@@ -1,0 +1,56 @@
+Implementiere auf meiner bestehenden Website ein sauberes Cookie-Consent-System für Deutschland, ohne das aktuelle Design, Layout, die Farben oder die Typografie zu verändern.
+
+WICHTIG:
+- Keine Designänderungen an der bestehenden Website
+- Nur Cookie-Logik, Banner, Consent-Speicherung und rechtliche Verknüpfungen ergänzen
+- Der Stil des Banners soll sich optisch an die bestehende Seite anpassen
+
+Ziel:
+Ein DSGVO-/TDDDG-konformes Cookie-Banner, bei dem NICHT notwendige Cookies und Skripte erst nach ausdrücklicher Einwilligung geladen werden.
+
+Funktionen:
+1. Erstelle ein Cookie-Banner beim ersten Besuch
+2. Zeige drei klare Optionen:
+   - "Nur notwendige Cookies"
+   - "Alle akzeptieren"
+   - "Einstellungen"
+3. In den Einstellungen sollen Kategorien auswählbar sein:
+   - Notwendig (immer aktiv, nicht abwählbar)
+   - Statistik
+   - Marketing
+   - Externe Medien
+4. Speichere die Auswahl lokal, damit das Banner nicht bei jedem Besuch erneut erscheint
+5. Lade NICHT notwendige Skripte nur dann, wenn der Nutzer aktiv zugestimmt hat
+6. Sorge dafür, dass notwendige Cookies auch ohne Einwilligung funktionieren
+7. Füge im Footer einen dauerhaft sichtbaren Link ein:
+   - "Cookie-Einstellungen"
+   Dieser öffnet das Consent-Modal erneut
+8. Verlinke im Banner und im Einstellungs-Modal direkt auf die Datenschutzerklärung
+9. Blockiere standardmäßig alle nicht notwendigen Cookies, Tracking-Skripte, Pixel, Analytics-Tools und externe eingebettete Inhalte, bis Consent vorliegt
+10. Wenn aktuell noch keine Statistik- oder Marketing-Tools eingebunden sind, soll das System trotzdem vorbereitet sein und mit Platzhaltern arbeiten
+
+Technische Anforderungen:
+- Bestehendes Design nicht verändern
+- Saubere responsive Umsetzung
+- Komponenten in bestehende Struktur integrieren
+- Consent-Status sauber kapseln
+- Klare Trennung zwischen notwendigen und optionalen Skripten
+- Skripte nur nach Consent dynamisch laden
+- Keine Dark Patterns
+- Keine vorausgewählten Checkboxen für optionale Kategorien
+- "Nur notwendige Cookies" und "Alle akzeptieren" sollen gleichwertig sichtbar sein
+- Consent jederzeit widerrufbar über "Cookie-Einstellungen" im Footer
+
+Zusätzliche Anforderungen:
+- Erstelle eine zentrale Konfigurationsdatei oder ein Objekt, in dem ich später Tools eintragen kann, z. B.:
+  - Google Analytics
+  - Meta Pixel
+  - Calendly
+  - YouTube Embeds
+- Markiere alle Stellen klar mit TODO-Kommentaren, wo ich meine echten Dienste eintragen muss
+- Wenn externe Inhalte wie YouTube, Google Maps oder Calendly eingebettet werden, zeige zunächst einen Platzhalter mit Hinweis an und lade den Inhalt erst nach Zustimmung zur passenden Kategorie
+
+Am Ende:
+- Gib mir eine Liste aller Dateien, die geändert oder neu erstellt wurden
+- Gib mir eine Liste aller TODOs, die ich noch selbst ausfüllen muss
+- Gib mir kurz an, welche Kategorien aktuell aktiv vorbereitet sind
