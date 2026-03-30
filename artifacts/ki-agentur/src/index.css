@@ -212,6 +212,11 @@
   }
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    background-image:
+      linear-gradient(rgba(193,255,114,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(193,255,114,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-color: hsl(0 0% 4%);
   }
 }
 

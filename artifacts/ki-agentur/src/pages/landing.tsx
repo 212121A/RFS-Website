@@ -110,15 +110,6 @@ function Navbar() {
 function HeroSection() {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-5 md:px-16 pt-20">
-      {/* Background grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(193,255,114,1) 1px, transparent 1px), linear-gradient(90deg, rgba(193,255,114,1) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
 
       {/* Glow orb */}
       <div
@@ -300,7 +291,7 @@ function ProcessSection() {
 
   return (
     <section id="prozess" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
-      <div className="w-full max-w-3xl mx-auto">
+      <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-16 md:mb-24">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
@@ -869,7 +860,7 @@ function Footer() {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navbar />
       <main>
         <HeroSection />
