@@ -255,10 +255,10 @@ const steps = [
   },
   {
     number: "05",
-    title: "Skalierung & Wachstum",
+    title: "Laufender Support",
     duration: "Dauerhaft",
-    description: "Neue Use Cases, erweiterte Automatisierungen und Optimierungen halten dich der Konkurrenz voraus.",
-    highlight: "Dein Business wächst — deine Systeme auch.",
+    description: "Solange du die KI in deinem Unternehmen nutzt, bin ich für dich da — bei Fragen, Anpassungen oder Erweiterungen.",
+    highlight: "Kein Vertrag ohne Ende. Support so lange du ihn brauchst.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" strokeLinecap="round" strokeLinejoin="round" />
