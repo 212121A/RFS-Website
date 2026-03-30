@@ -186,10 +186,10 @@ function HeroSection() {
             { number: "∞", label: "Skalierbarkeit" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-xl sm:text-2xl font-bold" style={{ color: ACCENT }}>
+              <div className="text-3xl sm:text-5xl font-bold" style={{ color: ACCENT }}>
                 {stat.number}
               </div>
-              <div className="text-xs sm:text-sm text-white/40 mt-1">{stat.label}</div>
+              <div className="text-sm sm:text-base text-white/40 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
