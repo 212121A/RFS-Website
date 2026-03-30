@@ -3,6 +3,55 @@ import { useConsent } from "@/context/ConsentContext";
 
 const ACCENT = "#c1ff72";
 
+// L-shaped corner brackets at all four corners of a section
+function SectionCorners({ size = 22, thickness = 2, opacity = 0.35 }: {
+  size?: number;
+  thickness?: number;
+  opacity?: number;
+}) {
+  const style = (top: boolean, left: boolean) => ({
+    position: "absolute" as const,
+    ...(top ? { top: 0 } : { bottom: 0 }),
+    ...(left ? { left: 0 } : { right: 0 }),
+    width: size,
+    height: size,
+    pointerEvents: "none" as const,
+    opacity,
+  });
+
+  const corner = (top: boolean, left: boolean) => (
+    <div style={style(top, left)}>
+      {/* Horizontal arm */}
+      <div style={{
+        position: "absolute",
+        ...(top ? { top: 0 } : { bottom: 0 }),
+        ...(left ? { left: 0 } : { right: 0 }),
+        width: size,
+        height: thickness,
+        background: ACCENT,
+      }} />
+      {/* Vertical arm */}
+      <div style={{
+        position: "absolute",
+        ...(top ? { top: 0 } : { bottom: 0 }),
+        ...(left ? { left: 0 } : { right: 0 }),
+        width: thickness,
+        height: size,
+        background: ACCENT,
+      }} />
+    </div>
+  );
+
+  return (
+    <>
+      {corner(true, true)}
+      {corner(true, false)}
+      {corner(false, true)}
+      {corner(false, false)}
+    </>
+  );
+}
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -111,6 +160,8 @@ function Navbar() {
 function HeroSection() {
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-5 md:px-16 pt-24">
+
+      <SectionCorners size={28} opacity={0.45} />
 
       {/* Glow orb */}
       <div
@@ -292,6 +343,7 @@ function ProcessSection() {
 
   return (
     <section id="prozess" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden">
+      <SectionCorners />
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-20 md:mb-28">
           <div
@@ -490,7 +542,8 @@ const comingSoonServices = [
 
 function ServicesSection() {
   return (
-    <section id="leistungen" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
+    <section id="leistungen" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
+      <SectionCorners />
       <div className="w-full max-w-7xl mx-auto">
         <div className="text-center mb-14 md:mb-20">
           <div
@@ -630,7 +683,8 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
+    <section id="faq" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
+      <SectionCorners />
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-14 md:mb-18">
           <div
@@ -709,7 +763,8 @@ function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
+    <section id="kontakt" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
+      <SectionCorners />
       <div className="w-full max-w-3xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
           <div
