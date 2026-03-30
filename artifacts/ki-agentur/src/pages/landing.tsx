@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useConsent } from "@/context/ConsentContext";
 
 const ACCENT = "#c1ff72";
 
@@ -894,6 +895,7 @@ function ContactSection() {
 }
 
 function Footer() {
+  const { openSettings } = useConsent();
   return (
     <footer className="py-12 px-8 md:px-16 border-t border-white/5">
       <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -901,7 +903,7 @@ function Footer() {
           <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain" />
           <span className="text-sm text-white/40">RevenueFlow Systems</span>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-6">
           <a
             href="/impressum"
             className="text-xs text-white/30 hover:text-white/60 transition-colors"
@@ -914,6 +916,13 @@ function Footer() {
           >
             Datenschutz
           </a>
+          <button
+            onClick={openSettings}
+            className="text-xs text-white/30 hover:text-white/60 transition-colors"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+          >
+            Cookie-Einstellungen
+          </button>
           <p className="text-xs text-white/20">
             © {new Date().getFullYear()} — Alle Rechte vorbehalten
           </p>

@@ -6,6 +6,9 @@ import NotFound from "@/pages/not-found";
 import LandingPage from "@/pages/landing";
 import ImpressumPage from "@/pages/impressum";
 import DatenschutzPage from "@/pages/datenschutz";
+import { ConsentProvider } from "@/context/ConsentContext";
+import { CookieBanner } from "@/components/CookieBanner";
+import { CookieSettingsModal } from "@/components/CookieSettingsModal";
 
 const queryClient = new QueryClient();
 
@@ -23,12 +26,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
+      <ConsentProvider>
+        <TooltipProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+          <Toaster />
+          <CookieBanner />
+          <CookieSettingsModal />
+        </TooltipProvider>
+      </ConsentProvider>
     </QueryClientProvider>
   );
 }

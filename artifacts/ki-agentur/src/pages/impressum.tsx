@@ -1,8 +1,10 @@
 import { useEffect } from "react";
+import { useConsent } from "@/context/ConsentContext";
 
 const ACCENT = "#c1ff72";
 
 export default function ImpressumPage() {
+  const { openSettings } = useConsent();
   useEffect(() => {
     document.title = "Impressum — RevenueFlow Systems";
   }, []);
@@ -100,9 +102,16 @@ export default function ImpressumPage() {
         className="py-10 px-8 border-t text-center"
         style={{ borderColor: "rgba(255,255,255,0.05)" }}
       >
-        <div className="flex items-center justify-center gap-6 text-xs text-white/30">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-white/30">
           <a href="/impressum" className="hover:text-white/60 transition-colors">Impressum</a>
           <a href="/datenschutz" className="hover:text-white/60 transition-colors">Datenschutz</a>
+          <button
+            onClick={openSettings}
+            className="hover:text-white/60 transition-colors"
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0, fontSize: "inherit", color: "inherit" }}
+          >
+            Cookie-Einstellungen
+          </button>
         </div>
         <p className="text-xs text-white/20 mt-3">
           © {new Date().getFullYear()} RevenueFlow Systems — Alle Rechte vorbehalten
