@@ -82,8 +82,16 @@ export const scriptEntries: ScriptEntry[] = [
   // },
 
   // ── EXTERNE MEDIEN ────────────────────────────────────────────────────────
-  // YouTube and Calendly embeds are handled via the ConsentPlaceholder component.
-  // TODO: Add any additional external media scripts here if needed.
+  // YouTube and Calendly embeds are handled via a ConsentPlaceholder component
+  // pattern (show placeholder until externalMedia consent is granted).
+
+  // TODO: YouTube — embed iframes only after externalMedia consent.
+  // Use a <ConsentPlaceholder category="externalMedia"> wrapper around each
+  // <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" />.
+
+  // TODO: Calendly — embed widget only after externalMedia consent.
+  // Use a <ConsentPlaceholder category="externalMedia"> wrapper around the
+  // Calendly inline embed <div> and its script tag.
 
 ];
 
