@@ -485,15 +485,15 @@ function ServicesSection() {
               key={service.title}
               className="group p-6 rounded-2xl transition-all duration-300 hover:border-white/15 cursor-default"
               style={{
-                background: "rgba(255,255,255,0.02)",
+                background: "hsl(0 0% 7%)",
                 border: "1px solid rgba(255,255,255,0.06)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(193,255,114,0.03)";
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(193,255,114,0.15)";
+                (e.currentTarget as HTMLDivElement).style.background = "hsl(0 0% 9%)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(193,255,114,0.2)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.02)";
+                (e.currentTarget as HTMLDivElement).style.background = "hsl(0 0% 7%)";
                 (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)";
               }}
             >
@@ -588,8 +588,8 @@ function FAQSection() {
               key={i}
               className="rounded-xl overflow-hidden transition-all duration-200"
               style={{
-                background: openIndex === i ? "rgba(193,255,114,0.04)" : "rgba(255,255,255,0.02)",
-                border: openIndex === i ? "1px solid rgba(193,255,114,0.2)" : "1px solid rgba(255,255,255,0.06)",
+                background: openIndex === i ? "hsl(0 0% 9%)" : "hsl(0 0% 7%)",
+                border: openIndex === i ? "1px solid rgba(193,255,114,0.2)" : "1px solid rgba(255,255,255,0.07)",
               }}
             >
               <button
@@ -687,7 +687,7 @@ function ContactSection() {
             onSubmit={handleSubmit}
             className="p-5 sm:p-8 rounded-2xl flex flex-col gap-4 sm:gap-5"
             style={{
-              background: "rgba(255,255,255,0.02)",
+              background: "hsl(0 0% 7%)",
               border: "1px solid rgba(255,255,255,0.07)",
             }}
           >
@@ -704,7 +704,7 @@ function ContactSection() {
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
+                    background: "hsl(0 0% 10%)",
                     border: "1px solid rgba(255,255,255,0.1)",
                   }}
                   onFocus={(e) => {
@@ -727,7 +727,7 @@ function ContactSection() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
+                    background: "hsl(0 0% 10%)",
                     border: "1px solid rgba(255,255,255,0.1)",
                   }}
                   onFocus={(e) => {
@@ -751,7 +751,7 @@ function ContactSection() {
                 onChange={(e) => setForm({ ...form, business: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
+                  background: "hsl(0 0% 10%)",
                   border: "1px solid rgba(255,255,255,0.1)",
                 }}
                 onFocus={(e) => {
@@ -774,7 +774,7 @@ function ContactSection() {
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all resize-none"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
+                  background: "hsl(0 0% 10%)",
                   border: "1px solid rgba(255,255,255,0.1)",
                 }}
                 onFocus={(e) => {
