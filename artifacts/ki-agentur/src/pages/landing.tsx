@@ -172,7 +172,14 @@ function HeroSection() {
           </a>
         </div>
 
-        <div className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-10">
+        <div className="flex items-center justify-center gap-2 mt-5 text-xs text-white/30">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          DSGVO-konform · Deine Daten sind sicher
+        </div>
+
+        <div className="mt-8 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-10">
           {[
             { number: "100%", label: "Individuelle Lösungen" },
             { number: "15 Min.", label: "Erstberatung" },
