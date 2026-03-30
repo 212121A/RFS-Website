@@ -232,6 +232,12 @@
 /* Smooth scrolling */
 body {
   overflow-x: hidden;
+  touch-action: pan-y;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 html {
