@@ -3,61 +3,51 @@ import { useConsent } from "@/context/ConsentContext";
 
 const ACCENT = "#c1ff72";
 
-// Vertical arms only — one at each corner, fading inward
+// Large L-shaped corner brackets spanning a significant portion of the section
 function SectionCorners() {
-  const arm = (top: boolean, left: boolean) => (
+  const corner = (top: boolean, left: boolean) => (
     <div
-      key={`${top}-${left}`}
       style={{
+        position: "absolute",
+        ...(top ? { top: 0 } : { bottom: 0 }),
+        ...(left ? { left: 0 } : { right: 0 }),
+        pointerEvents: "none",
+      }}
+    >
+      {/* Horizontal arm */}
+      <div style={{
+        position: "absolute",
+        ...(top ? { top: 0 } : { bottom: 0 }),
+        ...(left ? { left: 0 } : { right: 0 }),
+        width: "38vw",
+        height: 2,
+        background: left
+          ? `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`
+          : `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`,
+        opacity: 0.7,
+      }} />
+      {/* Vertical arm */}
+      <div style={{
         position: "absolute",
         ...(top ? { top: 0 } : { bottom: 0 }),
         ...(left ? { left: 0 } : { right: 0 }),
         width: 2,
         height: 180,
         background: top
-          ? `linear-gradient(to bottom, ${ACCENT} 0%, rgba(193,255,114,0.25) 60%, transparent 100%)`
-          : `linear-gradient(to top,   ${ACCENT} 0%, rgba(193,255,114,0.25) 60%, transparent 100%)`,
-        opacity: 0.7,
-        pointerEvents: "none",
-      }}
-    />
-  );
-  return (
-    <>
-      {arm(true,  true)}
-      {arm(true,  false)}
-      {arm(false, true)}
-      {arm(false, false)}
-    </>
-  );
-}
-
-// Horizontal divider — sits exactly at the boundary between two sections.
-// height:0 + overflow:visible ensures the 2px line straddles the gap midpoint.
-function SectionDivider() {
-  return (
-    <div style={{ position: "relative", height: 0, overflow: "visible", pointerEvents: "none", zIndex: 10 }}>
-      <div style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "38vw",
-        height: 2,
-        transform: "translateY(-50%)",
-        background: `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`,
-        opacity: 0.7,
-      }} />
-      <div style={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        width: "38vw",
-        height: 2,
-        transform: "translateY(-50%)",
-        background: `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`,
+          ? `linear-gradient(to bottom, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`
+          : `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`,
         opacity: 0.7,
       }} />
     </div>
+  );
+
+  return (
+    <>
+      {corner(true, true)}
+      {corner(true, false)}
+      {corner(false, true)}
+      {corner(false, false)}
+    </>
   );
 }
 
@@ -1002,13 +992,9 @@ export default function LandingPage() {
       <Navbar />
       <main>
         <HeroSection />
-        <SectionDivider />
         <ProcessSection />
-        <SectionDivider />
         <ServicesSection />
-        <SectionDivider />
         <FAQSection />
-        <SectionDivider />
         <ContactSection />
       </main>
       <Footer />
