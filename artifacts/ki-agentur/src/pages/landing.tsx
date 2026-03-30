@@ -172,9 +172,37 @@ function Navbar() {
   );
 }
 
+const GRID = 60;
+
 function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const appliedRef = useRef(0);
+  const [snapPad, setSnapPad] = useState(0);
+
+  useEffect(() => {
+    function snap() {
+      const el = sectionRef.current;
+      if (!el) return;
+      // Subtract padding we already applied to get the natural height
+      const naturalH = el.offsetHeight - appliedRef.current;
+      const rem = naturalH % GRID;
+      const needed = rem === 0 ? 0 : GRID - rem;
+      if (needed !== appliedRef.current) {
+        appliedRef.current = needed;
+        setSnapPad(needed);
+      }
+    }
+    snap();
+    window.addEventListener("resize", snap);
+    return () => window.removeEventListener("resize", snap);
+  }, []);
+
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-24">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-24"
+      style={snapPad > 0 ? { paddingBottom: snapPad } : undefined}
+    >
 
       {/* Top-left corner */}
       <div style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}>
