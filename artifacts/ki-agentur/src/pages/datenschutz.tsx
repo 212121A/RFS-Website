@@ -109,15 +109,30 @@ export default function DatenschutzPage() {
             </p>
           </DSSection>
 
-          <DSSection title="5. Kontaktformular">
+          <DSSection title="5. Kontaktformular & Formspree">
             <p>
-              Wenn du uns über das Kontaktformular auf dieser Website eine Anfrage zukommen lässt, werden deine Angaben aus dem Anfrageformular — inklusive der von dir dort angegebenen Kontaktdaten — zum Zweck der Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert.
+              Wenn du das Kontaktformular auf dieser Website nutzt, werden deine Angaben — Name, E-Mail-Adresse, Unternehmensangabe und Nachricht — zur Bearbeitung deiner Anfrage und für eventuelle Rückfragen verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).
             </p>
             <p className="mt-3">
-              Diese Daten geben wir nicht ohne deine Einwilligung weiter. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) sowie Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).
+              Die Übertragung der Formulardaten erfolgt über den Dienst <strong className="text-white/70">Formspree</strong>:
+            </p>
+            <div
+              className="mt-3 p-4 rounded-xl"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+            >
+              <p className="text-white/60">
+                Formspree, Inc.<br />
+                2 Wisconsin Circle, Suite 700, Chevy Chase, MD 20815, USA
+              </p>
+            </div>
+            <p className="mt-3">
+              Formspree empfängt die Formulardaten, leitet sie per E-Mail an uns weiter und speichert sie in der Formspree-Inbox. Da Formspree seinen Sitz in den USA hat, erfolgt eine Datenübermittlung in ein Drittland. Formspree setzt Standardvertragsklauseln gemäß Art. 46 Abs. 2 lit. c DSGVO ein. Mit Formspree wurde ein Auftragsverarbeitungsvertrag abgeschlossen. Weitere Informationen:{" "}
+              <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer" style={{ color: ACCENT }}>
+                formspree.io/legal/privacy-policy
+              </a>.
             </p>
             <p className="mt-3">
-              Die von dir im Kontaktformular eingegebenen Daten verbleiben bei uns, bis du uns zur Löschung aufforderst, deine Einwilligung zur Speicherung widerrufst oder der Zweck für die Datenspeicherung entfällt.
+              Die übermittelten Daten werden nach Abschluss der Kommunikation und spätestens nach 6 Monaten gelöscht, sofern keine Vertragsbeziehung entstanden ist.
             </p>
           </DSSection>
 

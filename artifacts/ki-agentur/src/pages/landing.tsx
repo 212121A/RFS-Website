@@ -770,11 +770,35 @@ function ContactSection() {
     privacy: false,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.privacy) return;
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmitError(false);
+    try {
+      const res = await fetch("https://formspree.io/f/xgopkbno", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          business: form.business,
+          message: form.message,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSubmitError(true);
+      }
+    } catch {
+      setSubmitError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -947,12 +971,21 @@ function ContactSection() {
 
             <button
               type="submit"
-              disabled={!form.privacy}
+              disabled={!form.privacy || submitting}
               className="w-full py-5 rounded-xl font-semibold text-lg transition-all active:scale-95 mt-1 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: ACCENT, color: "#0a0a0a" }}
             >
-              Kostenloses Erstgespräch anfragen →
+              {submitting ? "Wird gesendet…" : "Kostenloses Erstgespräch anfragen →"}
             </button>
+
+            {submitError && (
+              <p className="text-sm text-center" style={{ color: "#f87171" }}>
+                Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib uns direkt an{" "}
+                <a href="mailto:feller-alexander@gmx.net" style={{ textDecoration: "underline" }}>
+                  feller-alexander@gmx.net
+                </a>.
+              </p>
+            )}
 
             <p className="text-sm text-white/30 text-center">
               Kein Spam. Keine Verpflichtung. Ich melde mich innerhalb von 24h.
