@@ -202,8 +202,7 @@ const steps = [
     number: "01",
     title: "Kostenlose Erstberatung",
     duration: "15 Minuten",
-    description:
-      "Wir analysieren gemeinsam deine aktuelle Situation, identifizieren die größten Zeitfresser und Ineffizienzen in deinem Business — und schauen, wo KI den größten Hebel hat.",
+    description: "Wir schauen gemeinsam, wo in deinem Business KI den größten Hebel hat.",
     highlight: "Kein Verkaufsgespräch. Nur ehrliche Analyse.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -215,8 +214,7 @@ const steps = [
     number: "02",
     title: "Strategie & Konzept",
     duration: "1–2 Tage",
-    description:
-      "Basierend auf deinen Zielen entwickle ich eine maßgeschneiderte KI-Strategie. Du bekommst einen konkreten Umsetzungsplan mit klar definierten Meilensteinen und erwartetem ROI.",
+    description: "Du bekommst einen konkreten Umsetzungsplan mit Meilensteinen und erwartetem ROI.",
     highlight: "Transparent, verständlich, umsetzbar.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -228,8 +226,7 @@ const steps = [
     number: "03",
     title: "KI-Implementierung",
     duration: "1–4 Wochen",
-    description:
-      "Ich baue und integriere die KI-Agenten direkt in deine bestehenden Tools und Workflows. Von n8n-Automatisierungen über API-Integrationen bis hin zu vollständigen KI-Agenten-Systemen.",
+    description: "Ich baue und integriere KI-Agenten direkt in deine bestehenden Tools und Workflows.",
     highlight: "Keine Unterbrechung deines laufenden Business.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -241,8 +238,7 @@ const steps = [
     number: "04",
     title: "Testing & Optimierung",
     duration: "Laufend",
-    description:
-      "Gemeinsam testen wir alle implementierten Systeme, optimieren die Leistung und stellen sicher, dass alles reibungslos funktioniert. Ich begleite dich, bis alles perfekt läuft.",
+    description: "Wir testen alle Systeme und ich begleite dich, bis alles reibungslos läuft.",
     highlight: "Vollständiger Support bis zum Go-live.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -254,8 +250,7 @@ const steps = [
     number: "05",
     title: "Skalierung & Wachstum",
     duration: "Dauerhaft",
-    description:
-      "Nach dem erfolgreichen Start skalieren wir dein KI-System kontinuierlich. Neue Use Cases, erweiterte Automatisierungen und regelmäßige Optimierungen halten dich der Konkurrenz voraus.",
+    description: "Neue Use Cases, erweiterte Automatisierungen und Optimierungen halten dich der Konkurrenz voraus.",
     highlight: "Dein Business wächst — deine Systeme auch.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
