@@ -454,6 +454,34 @@ const services = [
   },
 ];
 
+const comingSoonServices = [
+  {
+    title: "Follow-Up Automatisierung",
+    description: "Automatisches Nachfassen bei Interessenten, die nicht direkt buchen.",
+    icon: "🔁",
+  },
+  {
+    title: "No-Show Reduzierung",
+    description: "Automatische Erinnerungen und Bestätigungen für weniger Termin-Ausfälle.",
+    icon: "📅",
+  },
+  {
+    title: "Bewertungen automatisieren",
+    description: "Hole dir automatisch mehr 5★ Bewertungen nach jedem Termin.",
+    icon: "⭐",
+  },
+  {
+    title: "Kunden-Reaktivierung",
+    description: "Gewinne alte Kunden zurück durch gezielte automatische Nachrichten.",
+    icon: "🔄",
+  },
+  {
+    title: "WhatsApp Funnel",
+    description: "Verwandle Website- und Instagram-Besucher automatisch in Anfragen.",
+    icon: "📲",
+  },
+];
+
 function ServicesSection() {
   return (
     <section id="leistungen" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
@@ -519,6 +547,38 @@ function ServicesSection() {
                   </span>
                 ))}
               </div>
+            </div>
+          ))}
+
+          {comingSoonServices.map((service) => (
+            <div
+              key={service.title}
+              className="p-6 rounded-2xl cursor-default"
+              style={{
+                background: "hsl(0 0% 5%)",
+                border: "1px solid rgba(255,255,255,0.04)",
+                opacity: 0.55,
+              }}
+            >
+              <div className="text-3xl mb-4 grayscale">{service.icon}</div>
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <h3 className="text-lg font-semibold text-white/70">
+                  {service.title}
+                </h3>
+                <span
+                  className="flex-shrink-0 text-xs font-medium px-2 py-0.5 rounded-md mt-0.5"
+                  style={{
+                    color: "rgba(255,255,255,0.35)",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
+                  Coming Soon
+                </span>
+              </div>
+              <p className="text-white/35 text-sm leading-relaxed">
+                {service.description}
+              </p>
             </div>
           ))}
         </div>
