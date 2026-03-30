@@ -121,6 +121,141 @@ function HeroSection() {
         }}
       />
 
+      {/* Left side: trust signals — visible on xl+ only */}
+      <div className="absolute left-6 2xl:left-12 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-3 pointer-events-none z-10">
+        {[
+          { icon: "⚡", label: "24/7 aktiv", sub: "Jede Anfrage beantwortet" },
+          { icon: "📅", label: "Setup < 7 Tage", sub: "Schnelle Umsetzung" },
+          { icon: "🔒", label: "DSGVO-konform", sub: "Datenschutz inklusive" },
+          { icon: "✓", label: "Kein Vertrag", sub: "Flexibel & fair" },
+        ].map((item, i) => (
+          <div
+            key={item.label}
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl w-52"
+            style={{
+              background: "rgba(255,255,255,0.025)",
+              border: "1px solid rgba(255,255,255,0.07)",
+              opacity: 1 - i * 0.08,
+            }}
+          >
+            <span className="text-base flex-shrink-0">{item.icon}</span>
+            <div>
+              <div className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.65)" }}>
+                {item.label}
+              </div>
+              <div className="text-xs" style={{ color: "rgba(255,255,255,0.28)" }}>
+                {item.sub}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Right side: AI chat mockup — visible on xl+ only */}
+      <div className="absolute right-6 2xl:right-12 top-1/2 -translate-y-1/2 hidden xl:block pointer-events-none z-10 w-56">
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{
+            background: "rgba(255,255,255,0.025)",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          {/* Chat header */}
+          <div
+            className="px-3 py-2.5 flex items-center gap-2.5"
+            style={{
+              background: "rgba(255,255,255,0.03)",
+              borderBottom: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <div
+              className="w-2 h-2 rounded-full flex-shrink-0"
+              style={{ background: ACCENT, boxShadow: `0 0 6px ${ACCENT}` }}
+            />
+            <span className="text-xs font-semibold" style={{ color: "rgba(255,255,255,0.65)" }}>
+              KI-Agent
+            </span>
+            <span
+              className="ml-auto text-xs px-1.5 py-0.5 rounded-md"
+              style={{
+                background: "rgba(193,255,114,0.1)",
+                color: ACCENT,
+                fontSize: "10px",
+              }}
+            >
+              ONLINE
+            </span>
+          </div>
+
+          {/* Messages */}
+          <div className="p-3 flex flex-col gap-2">
+            <div className="flex justify-start">
+              <div
+                className="text-xs px-2.5 py-2 rounded-xl rounded-tl-sm max-w-[85%] leading-relaxed"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  color: "rgba(255,255,255,0.55)",
+                }}
+              >
+                Hallo, ich würde gerne einen Termin...
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <div
+                className="text-xs px-2.5 py-2 rounded-xl rounded-tr-sm max-w-[85%] leading-relaxed"
+                style={{
+                  background: "rgba(193,255,114,0.1)",
+                  color: ACCENT,
+                }}
+              >
+                Kein Problem! Ich finde gleich einen freien Slot für Sie.
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <div
+                className="text-xs px-2.5 py-2 rounded-xl rounded-tr-sm max-w-[85%] leading-relaxed font-semibold"
+                style={{
+                  background: "rgba(193,255,114,0.15)",
+                  color: ACCENT,
+                }}
+              >
+                ✓ Termin gebucht — 16. Apr. 10:00
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div
+            className="px-3 py-2 flex items-center justify-between"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+          >
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: "10px" }}>
+              Automatisch beantwortet
+            </span>
+            <span className="text-xs" style={{ color: "rgba(255,255,255,0.2)", fontSize: "10px" }}>
+              14:32
+            </span>
+          </div>
+        </div>
+
+        {/* Small metric below chat */}
+        <div
+          className="mt-3 px-3 py-2 rounded-xl flex items-center gap-2"
+          style={{
+            background: "rgba(255,255,255,0.025)",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2">
+            <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontSize: "11px" }}>
+            <span style={{ color: ACCENT, fontWeight: 600 }}>+40% mehr Buchungen</span>
+            {" "}im Schnitt
+          </span>
+        </div>
+      </div>
+
       <div className="relative w-full max-w-6xl mx-auto text-center">
         <div
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8 border"
@@ -291,7 +426,90 @@ function ProcessSection() {
   }, []);
 
   return (
-    <section id="prozess" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
+    <section id="prozess" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden">
+
+      {/* Right side decoration: floating process overview — xl+ only */}
+      <div className="absolute right-6 2xl:right-14 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-3 pointer-events-none z-10 w-52">
+        <div
+          className="px-4 py-4 rounded-2xl"
+          style={{
+            background: "rgba(255,255,255,0.025)",
+            border: "1px solid rgba(255,255,255,0.07)",
+          }}
+        >
+          <div className="text-xs font-semibold mb-4" style={{ color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em" }}>
+            TYPISCHER ABLAUF
+          </div>
+          <div className="flex flex-col gap-3">
+            {[
+              { step: "01", label: "Erstberatung", time: "15 Min." },
+              { step: "02", label: "Konzept", time: "1–2 Tage" },
+              { step: "03", label: "Aufbau", time: "1–4 Wo." },
+              { step: "04", label: "Go-Live", time: "Laufend" },
+              { step: "05", label: "Support", time: "Dauerhaft" },
+            ].map((item) => (
+              <div key={item.step} className="flex items-center gap-2.5">
+                <span
+                  className="text-xs font-bold w-6 h-6 rounded flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: "rgba(193,255,114,0.1)",
+                    color: ACCENT,
+                    fontSize: "9px",
+                  }}
+                >
+                  {item.step}
+                </span>
+                <span className="text-xs flex-1" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  {item.label}
+                </span>
+                <span className="text-xs" style={{ color: "rgba(255,255,255,0.25)", fontSize: "10px" }}>
+                  {item.time}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div
+          className="px-4 py-3 rounded-xl flex items-center gap-2.5"
+          style={{
+            background: "rgba(193,255,114,0.05)",
+            border: "1px solid rgba(193,255,114,0.12)",
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontSize: "11px" }}>
+            <span style={{ color: ACCENT, fontWeight: 600 }}>Ø 3 Wochen</span>
+            {" "}bis Go-Live
+          </span>
+        </div>
+      </div>
+
+      {/* Left side decoration: vertical label — xl+ only */}
+      <div
+        className="absolute left-4 2xl:left-10 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-3 pointer-events-none z-10"
+      >
+        <div
+          style={{
+            writingMode: "vertical-rl",
+            transform: "rotate(180deg)",
+            color: "rgba(255,255,255,0.07)",
+            fontSize: "11px",
+            letterSpacing: "0.25em",
+            fontWeight: 700,
+            textTransform: "uppercase",
+          }}
+        >
+          Von der Idee zur Lösung
+        </div>
+        <div
+          className="w-px h-16"
+          style={{ background: "linear-gradient(to bottom, transparent, rgba(193,255,114,0.2), transparent)" }}
+        />
+      </div>
+
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-20 md:mb-28">
           <div
