@@ -480,6 +480,11 @@ const comingSoonServices = [
     description: "Verwandle Website- und Instagram-Besucher automatisch in Anfragen.",
     icon: "📲",
   },
+  {
+    title: "Mitarbeiterverwaltungs-App",
+    description: "Eigene App für dein Team: Zeiterfassung, interner Chat, Urlaubsplanung und mehr – alles an einem Ort.",
+    icon: "🧑‍💼",
+  },
 ];
 
 function ServicesSection() {
