@@ -134,14 +134,14 @@ function HeroSection() {
         </div>
 
         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
-          Dein Business.
+          Nie wieder verpasste
           <br />
-          <span style={{ color: ACCENT }}>Automatisiert.</span>
+          <span style={{ color: ACCENT }}>Kundenanfragen.</span>
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-8 leading-relaxed px-2">
-          Ich analysiere deine individuellen Prozesse und implementiere KI-Agenten,
-          die dir Zeit sparen, Fehler reduzieren und dein Business skalieren.
+          Ich automatisiere deine Anrufe und Nachrichten, damit jede Anfrage sofort
+          beantwortet und in einen Termin verwandelt wird.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -411,45 +411,45 @@ function ProcessSection() {
 
 const services = [
   {
-    title: "KI-Agenten",
+    title: "Automatische Terminannahme",
     description:
-      "Maßgeschneiderte KI-Agenten, die eigenständig Aufgaben übernehmen — von der Kundenanfrage bis zur Datenanal yse.",
-    tags: ["n8n", "OpenAI", "Anthropic", "APIs"],
+      "Jede Anfrage wird sofort beantwortet und direkt in einen Termin umgewandelt – ohne dass du selbst reagieren musst.",
+    tags: ["24/7", "Terminbuchung", "Automatisch"],
     icon: "🤖",
   },
   {
-    title: "Workflow-Automatisierung",
+    title: "Telefon- & WhatsApp-Agent",
     description:
-      "Verbinde deine Tools und automatisiere repetitive Prozesse. Spar Zeit, reduziere Fehler und fokussiere dich auf das Wesentliche.",
-    tags: ["n8n", "Zapier", "Make", "APIs"],
+      "Ein KI-Assistent nimmt Anrufe und Nachrichten entgegen, beantwortet Fragen und bucht Termine automatisch.",
+    tags: ["Telefon", "WhatsApp", "KI-Agent"],
     icon: "⚡",
   },
   {
-    title: "Lead-Generierung",
+    title: "Weniger No-Shows",
     description:
-      "KI-gestützte Systeme, die potenzielle Kunden identifizieren, qualifizieren und automatisch ansprechen.",
-    tags: ["Outreach", "CRM", "KI-Scoring"],
+      "Automatische Bestätigungen und Erinnerungen sorgen dafür, dass Termine zuverlässig eingehalten werden.",
+    tags: ["Erinnerungen", "SMS", "E-Mail"],
     icon: "🎯",
   },
   {
-    title: "Chatbots & Support",
+    title: "Entlastung im Alltag",
     description:
-      "Intelligente Chatbots, die rund um die Uhr Kundenfragen beantworten und qualifizierte Leads generieren.",
-    tags: ["RAG", "Support", "24/7"],
+      "Kein ständiges Telefonieren oder Antworten mehr – du kannst dich wieder auf deine Arbeit konzentrieren.",
+    tags: ["Zeitersparnis", "Fokus", "Effizienz"],
     icon: "💬",
   },
   {
-    title: "Datenanalyse",
+    title: "Mehr Kunden ohne Mehraufwand",
     description:
-      "Verwandle deine Rohdaten in handlungsrelevante Insights. KI analysiert, erkennt Muster und gibt klare Empfehlungen.",
-    tags: ["Analytics", "Reporting", "Prediction"],
+      "Du verlierst keine Anfragen mehr und gewinnst mehr zahlende Kunden – ohne mehr Zeit zu investieren.",
+    tags: ["Wachstum", "Leads", "Conversion"],
     icon: "📊",
   },
   {
-    title: "Content-Automatisierung",
+    title: "Ein System für alles",
     description:
-      "Automatisiere deine Content-Produktion — von Social Media Posts über E-Mails bis zu Blog-Artikeln.",
-    tags: ["Content", "Social Media", "E-Mail"],
+      "Alle Anfragen laufen zentral zusammen und werden automatisch verarbeitet.",
+    tags: ["Zentralisiert", "Automatisiert", "Übersicht"],
     icon: "✍️",
   },
 ];
@@ -471,7 +471,7 @@ function ServicesSection() {
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Was ich für dich{" "}
-            <span style={{ color: ACCENT }}>umsetzen kann</span>
+            <span style={{ color: ACCENT }}>automatisiere</span>
           </h2>
           <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
             Jede Lösung wird individuell auf dein Business zugeschnitten.
