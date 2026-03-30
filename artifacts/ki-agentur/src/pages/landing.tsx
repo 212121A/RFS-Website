@@ -173,51 +173,29 @@ function Navbar() {
 }
 
 function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const [statsBottomY, setStatsBottomY] = useState<number | null>(null);
-
-  useEffect(() => {
-    function measure() {
-      if (!sectionRef.current || !statsRef.current) return;
-      const sectionTop = sectionRef.current.getBoundingClientRect().top + window.scrollY;
-      const statsBottom = statsRef.current.getBoundingClientRect().bottom + window.scrollY;
-      setStatsBottomY(statsBottom - sectionTop);
-    }
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
-  }, []);
-
   return (
-    <section ref={sectionRef} className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-24">
+    <section className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-24">
 
-      {/* Top corners only from SectionCorners */}
-      {/* Top-left */}
+      {/* Top-left corner */}
       <div style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}>
         <div style={{ position: "absolute", top: 0, left: 0, width: "38vw", height: 2, background: `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
         <div style={{ position: "absolute", top: 0, left: 0, width: 2, height: 180, background: `linear-gradient(to bottom, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
       </div>
-      {/* Top-right */}
+      {/* Top-right corner */}
       <div style={{ position: "absolute", top: 0, right: 0, pointerEvents: "none" }}>
         <div style={{ position: "absolute", top: 0, right: 0, width: "38vw", height: 2, background: `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
         <div style={{ position: "absolute", top: 0, right: 0, width: 2, height: 180, background: `linear-gradient(to bottom, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
       </div>
-      {/* Bottom corners — anchored to stats row bottom */}
-      {statsBottomY !== null && (
-        <>
-          {/* Bottom-left */}
-          <div style={{ position: "absolute", top: statsBottomY, left: 0, pointerEvents: "none" }}>
-            <div style={{ position: "absolute", top: 0, left: 0, width: "38vw", height: 2, background: `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, width: 2, height: 180, background: `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-          </div>
-          {/* Bottom-right */}
-          <div style={{ position: "absolute", top: statsBottomY, right: 0, pointerEvents: "none" }}>
-            <div style={{ position: "absolute", top: 0, right: 0, width: "38vw", height: 2, background: `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-            <div style={{ position: "absolute", bottom: 0, right: 0, width: 2, height: 180, background: `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-          </div>
-        </>
-      )}
+      {/* Bottom-left corner — at section bottom (hero/process boundary) */}
+      <div style={{ position: "absolute", bottom: 0, left: 0, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", bottom: 0, left: 0, width: "38vw", height: 2, background: `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
+        <div style={{ position: "absolute", bottom: 0, left: 0, width: 2, height: 180, background: `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
+      </div>
+      {/* Bottom-right corner — at section bottom (hero/process boundary) */}
+      <div style={{ position: "absolute", bottom: 0, right: 0, pointerEvents: "none" }}>
+        <div style={{ position: "absolute", bottom: 0, right: 0, width: "38vw", height: 2, background: `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
+        <div style={{ position: "absolute", bottom: 0, right: 0, width: 2, height: 180, background: `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
+      </div>
 
       {/* Glow orb */}
       <div
@@ -287,7 +265,7 @@ function HeroSection() {
           <span className="text-base text-white/40">— Deine Daten sind bei uns sicher</span>
         </div>
 
-        <div ref={statsRef} className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-14">
+        <div className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-14">
           {[
             { number: "100%", label: "Individuelle Lösungen" },
             { number: "15 Min.", label: "Erstberatung" },
