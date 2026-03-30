@@ -953,9 +953,25 @@ function Footer() {
   return (
     <footer className="py-14 px-8 md:px-16 border-t border-white/5">
       <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-5">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <img src="/logo.png" alt="Logo" className="h-8 w-8 object-contain" />
           <span className="text-base text-white/40">RevenueFlow Systems</span>
+          <a
+            href="https://www.instagram.com/revenueflow.systems/?hl=de"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="transition-colors"
+            style={{ color: "rgba(255,255,255,0.3)" }}
+            onMouseEnter={e => (e.currentTarget.style.color = ACCENT)}
+            onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.3)")}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6">
           <a
