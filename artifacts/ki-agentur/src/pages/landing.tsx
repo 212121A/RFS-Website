@@ -172,11 +172,20 @@ function HeroSection() {
           </a>
         </div>
 
-        <div className="flex items-center justify-center gap-2 mt-5 text-xs text-white/30">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <div
+          className="inline-flex items-center gap-3 mt-6 px-5 py-3 rounded-xl"
+          style={{
+            background: "rgba(193,255,114,0.07)",
+            border: "1px solid rgba(193,255,114,0.25)",
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          DSGVO-konform · Deine Daten sind sicher
+          <span className="text-sm font-semibold" style={{ color: ACCENT }}>
+            100% DSGVO-konform
+          </span>
+          <span className="text-sm text-white/40">— Deine Daten sind bei uns sicher</span>
         </div>
 
         <div className="mt-8 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-10">
