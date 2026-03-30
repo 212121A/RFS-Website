@@ -58,33 +58,28 @@ export default function ImpressumPage() {
             color: ACCENT,
           }}
         >
-          <strong>Hinweis:</strong> Die mit <code className="bg-white/10 px-1 rounded">[TODO]</code> markierten Felder musst du mit deinen echten Angaben ersetzen.
+          <strong>Hinweis:</strong> Bitte noch die <strong>E-Mail-Adresse</strong> eintragen.
         </div>
 
         <div className="flex flex-col gap-10">
           <Section title="Angaben zum Unternehmen">
-            <Row label="Firmenname / vollständiger Name" value="[TODO: z.B. RevenueFlow Systems GmbH / Max Mustermann]" />
-            <Row label="Rechtsform" value="[TODO: z.B. GmbH / Einzelunternehmen / UG]" />
-            <Row label="Vertretungsberechtigte Person" value="[TODO: z.B. Max Mustermann, Geschäftsführer]" />
+            <Row label="Firmenname / vollständiger Name" value="RevenueFlow Systems" />
+            <Row label="Rechtsform" value="Einzelunternehmen" />
+            <Row label="Inhaber" value="Alexander Feller" />
           </Section>
 
           <Section title="Kontakt">
-            <Row label="Anschrift" value="[TODO: Musterstraße 1, 12345 Musterstadt, Deutschland]" />
+            <Row label="Anschrift" value="Turniergraben 1, 73525 Schwäbisch Gmünd, Deutschland" />
             <Row label="E-Mail" value="[TODO: kontakt@beispiel.de]" />
-            <Row label="Telefon" value="[TODO: +49 123 456789]" />
-          </Section>
-
-          <Section title="Steuerliche Angaben">
-            <Row label="USt-IdNr. (falls vorhanden)" value="[TODO: DE123456789 — oder entfernen, falls nicht vorhanden]" />
+            <Row label="Telefon" value="+49 177 8090025" />
           </Section>
 
           <Section title="Berufsbezeichnung / Tätigkeit">
-            <Row label="Tätigkeitsbeschreibung" value="[TODO: z.B. KI-Automatisierungsberater, IT-Dienstleister]" />
-            <Row label="Zuständige Kammer / Aufsichtsbehörde (falls relevant)" value="[TODO: oder entfernen]" />
+            <Row label="Tätigkeitsbeschreibung" value="KI-Automatisierungsberater, IT-Dienstleister" />
           </Section>
 
           <Section title="Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV">
-            <Row label="Name & Anschrift" value="[TODO: Vollständiger Name, Anschrift wie oben]" />
+            <Row label="Name & Anschrift" value="Alexander Feller, Turniergraben 1, 73525 Schwäbisch Gmünd" />
           </Section>
 
           <Section title="Haftungshinweis">
