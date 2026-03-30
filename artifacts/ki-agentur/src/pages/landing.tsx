@@ -3,41 +3,42 @@ import { useConsent } from "@/context/ConsentContext";
 
 const ACCENT = "#c1ff72";
 
-// L-shaped corner brackets at all four corners of a section
-function SectionCorners({ size = 22, thickness = 2, opacity = 0.35 }: {
-  size?: number;
-  thickness?: number;
-  opacity?: number;
-}) {
-  const style = (top: boolean, left: boolean) => ({
-    position: "absolute" as const,
-    ...(top ? { top: 0 } : { bottom: 0 }),
-    ...(left ? { left: 0 } : { right: 0 }),
-    width: size,
-    height: size,
-    pointerEvents: "none" as const,
-    opacity,
-  });
-
+// Large L-shaped corner brackets spanning a significant portion of the section
+function SectionCorners() {
+  // Horizontal arm: spans ~28% of the section width, fades toward center
+  // Vertical arm: spans ~120px, fades toward center
   const corner = (top: boolean, left: boolean) => (
-    <div style={style(top, left)}>
-      {/* Horizontal arm */}
+    <div
+      style={{
+        position: "absolute",
+        ...(top ? { top: 0 } : { bottom: 0 }),
+        ...(left ? { left: 0 } : { right: 0 }),
+        pointerEvents: "none",
+      }}
+    >
+      {/* Horizontal arm — fades away from the corner */}
       <div style={{
         position: "absolute",
         ...(top ? { top: 0 } : { bottom: 0 }),
         ...(left ? { left: 0 } : { right: 0 }),
-        width: size,
-        height: thickness,
-        background: ACCENT,
+        width: "38vw",
+        height: 2,
+        background: left
+          ? `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`
+          : `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`,
+        opacity: 0.7,
       }} />
-      {/* Vertical arm */}
+      {/* Vertical arm — fades away from the corner */}
       <div style={{
         position: "absolute",
         ...(top ? { top: 0 } : { bottom: 0 }),
         ...(left ? { left: 0 } : { right: 0 }),
-        width: thickness,
-        height: size,
-        background: ACCENT,
+        width: 2,
+        height: 180,
+        background: top
+          ? `linear-gradient(to bottom, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`
+          : `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`,
+        opacity: 0.7,
       }} />
     </div>
   );
