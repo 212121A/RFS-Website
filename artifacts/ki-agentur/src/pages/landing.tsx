@@ -24,10 +24,10 @@ function Navbar() {
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
       }}
     >
-      <div className="w-full px-8 py-4 flex items-center justify-between">
+      <div className="w-full px-8 py-5 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Logo" className="h-14 w-14 object-contain" />
-          <span className="font-semibold text-white text-sm tracking-wide">
+          <span className="font-semibold text-white text-base tracking-wide">
             RevenueFlow Systems
           </span>
         </div>
@@ -41,14 +41,14 @@ function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-white/60 hover:text-white transition-colors"
+              className="text-base text-white/60 hover:text-white transition-colors"
             >
               {item.label}
             </a>
           ))}
           <a
             href="#kontakt"
-            className="text-sm font-semibold px-4 py-2 rounded-lg transition-all"
+            className="text-base font-semibold px-5 py-2.5 rounded-lg transition-all"
             style={{
               background: ACCENT,
               color: "#0a0a0a",
@@ -63,7 +63,7 @@ function Navbar() {
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2">
             {menuOpen ? (
               <path d="M18 6L6 18M6 6l12 12" />
             ) : (
@@ -88,7 +88,7 @@ function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm text-white/70 hover:text-white transition-colors py-2 border-b border-white/5"
+              className="text-base text-white/70 hover:text-white transition-colors py-2 border-b border-white/5"
               onClick={() => setMenuOpen(false)}
             >
               {item.label}
@@ -96,7 +96,7 @@ function Navbar() {
           ))}
           <a
             href="#kontakt"
-            className="text-sm font-semibold px-4 py-3 rounded-lg text-center mt-2"
+            className="text-base font-semibold px-4 py-3 rounded-lg text-center mt-2"
             style={{ background: ACCENT, color: "#0a0a0a" }}
             onClick={() => setMenuOpen(false)}
           >
@@ -110,94 +110,94 @@ function Navbar() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-5 md:px-16 pt-20">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-5 md:px-16 pt-24">
 
       {/* Glow orb */}
       <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(193,255,114,0.06) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(193,255,114,0.07) 0%, transparent 70%)",
         }}
       />
 
       <div className="relative w-full max-w-6xl mx-auto text-center">
         <div
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 border"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8 border"
           style={{
             color: ACCENT,
             borderColor: "rgba(193,255,114,0.3)",
             background: "rgba(193,255,114,0.05)",
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full inline-block flex-shrink-0" style={{ background: ACCENT }} />
+          <span className="w-2 h-2 rounded-full inline-block flex-shrink-0" style={{ background: ACCENT }} />
           <span>Kostenlose Erstberatung — 15 Min., keine Verpflichtung</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
+        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-6 leading-[1.05] tracking-tight">
           Nie wieder verpasste
           <br />
           <span style={{ color: ACCENT }}>Kundenanfragen.</span>
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-8 leading-relaxed px-2">
+        <p className="text-lg sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-10 leading-relaxed px-2">
           Ich automatisiere deine Anrufe und Nachrichten, damit jede Anfrage sofort
           beantwortet und in einen Termin verwandelt wird.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#kontakt"
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-base transition-all hover:opacity-90 active:scale-95"
+            className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-xl font-semibold text-lg transition-all hover:opacity-90 active:scale-95"
             style={{ background: ACCENT, color: "#0a0a0a" }}
           >
             Jetzt 15 Min. Erstgespräch buchen
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
           <a
             href="#prozess"
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-base transition-all border border-white/10 text-white hover:border-white/20 hover:bg-white/5"
+            className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-xl font-semibold text-lg transition-all border border-white/10 text-white hover:border-white/20 hover:bg-white/5"
           >
             Prozess ansehen
           </a>
         </div>
 
         <div
-          className="inline-flex items-center gap-3 mt-6 px-5 py-3 rounded-xl"
+          className="inline-flex items-center gap-3 mt-8 px-6 py-4 rounded-xl"
           style={{
             background: "rgba(193,255,114,0.07)",
             border: "1px solid rgba(193,255,114,0.25)",
           }}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="text-sm font-semibold" style={{ color: ACCENT }}>
+          <span className="text-base font-semibold" style={{ color: ACCENT }}>
             100% DSGVO-konform
           </span>
-          <span className="text-sm text-white/40">— Deine Daten sind bei uns sicher</span>
+          <span className="text-base text-white/40">— Deine Daten sind bei uns sicher</span>
         </div>
 
-        <div className="mt-8 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-10">
+        <div className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-14">
           {[
             { number: "100%", label: "Individuelle Lösungen" },
             { number: "15 Min.", label: "Erstberatung" },
             { number: "∞", label: "Skalierbarkeit" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-3xl sm:text-5xl font-bold" style={{ color: ACCENT }}>
+              <div className="text-4xl sm:text-6xl font-bold" style={{ color: ACCENT }}>
                 {stat.number}
               </div>
-              <div className="text-sm sm:text-base text-white/40 mt-1">{stat.label}</div>
+              <div className="text-base sm:text-lg text-white/40 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2">
           <path d="M12 5v14M5 12l7 7 7-7" />
         </svg>
       </div>
@@ -213,7 +213,7 @@ const steps = [
     description: "Wir schauen gemeinsam, wo in deinem Business KI den größten Hebel hat.",
     highlight: "Kein Verkaufsgespräch. Nur ehrliche Analyse.",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M8 10h8M8 14h5M5 3h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
@@ -225,7 +225,7 @@ const steps = [
     description: "Du bekommst einen konkreten Umsetzungsplan mit Meilensteinen und erwartetem ROI.",
     highlight: "Transparent, verständlich, umsetzbar.",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
@@ -237,7 +237,7 @@ const steps = [
     description: "Ich baue und integriere KI-Agenten direkt in deine bestehenden Tools und Workflows.",
     highlight: "Keine Unterbrechung deines laufenden Business.",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
@@ -249,7 +249,7 @@ const steps = [
     description: "Wir testen alle Systeme und ich begleite dich, bis alles reibungslos läuft.",
     highlight: "Vollständiger Support bis zum Go-live.",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
@@ -261,7 +261,7 @@ const steps = [
     description: "Solange du die KI in deinem Unternehmen nutzt, bin ich für dich da — bei Fragen, Anpassungen oder Erweiterungen.",
     highlight: "Kein Vertrag ohne Ende. Support so lange du ihn brauchst.",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
@@ -282,7 +282,7 @@ function ProcessSection() {
             setActiveSteps((prev) => new Set([...prev, i]));
           }
         },
-        { threshold: 0.4 }
+        { threshold: 0.3 }
       );
       obs.observe(el);
       observers.push(obs);
@@ -291,11 +291,11 @@ function ProcessSection() {
   }, []);
 
   return (
-    <section id="prozess" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
+    <section id="prozess" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-5xl mx-auto">
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-20 md:mb-28">
           <div
-            className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block text-sm font-medium px-4 py-1.5 rounded-full mb-5"
             style={{
               color: ACCENT,
               background: "rgba(193,255,114,0.08)",
@@ -304,11 +304,11 @@ function ProcessSection() {
           >
             Der Prozess
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight">
             Von der Idee zur{" "}
             <span style={{ color: ACCENT }}>fertigen Lösung</span>
           </h2>
-          <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">
             Ein klarer, strukturierter Weg — damit du immer weißt, wo wir stehen.
           </p>
         </div>
@@ -316,18 +316,18 @@ function ProcessSection() {
         <div className="relative">
           {/* Vertical rail line */}
           <div
-            className="absolute left-6 top-0 bottom-0 w-px md:left-8"
+            className="absolute left-8 top-0 bottom-0 w-px md:left-10"
             style={{ background: "rgba(193,255,114,0.12)" }}
           />
 
-          <div className="flex flex-col gap-12 md:gap-16">
+          <div className="flex flex-col gap-16 md:gap-20">
             {steps.map((step, i) => {
               const active = activeSteps.has(i);
               return (
                 <div
                   key={step.number}
                   ref={(el) => { stepRefs.current[i] = el; }}
-                  className="flex gap-6 md:gap-10 relative"
+                  className="flex gap-8 md:gap-12 relative"
                   style={{
                     opacity: active ? 1 : 0.25,
                     transform: active ? "translateX(0)" : "translateX(-12px)",
@@ -337,11 +337,11 @@ function ProcessSection() {
                   {/* Node */}
                   <div className="flex flex-col items-center shrink-0" style={{ zIndex: 1 }}>
                     <div
-                      className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center relative"
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center relative"
                       style={{
                         background: active ? "rgba(193,255,114,0.12)" : "hsl(0 0% 7%)",
                         border: `2px solid ${active ? ACCENT : "rgba(193,255,114,0.2)"}`,
-                        boxShadow: active ? "0 0 32px rgba(193,255,114,0.2)" : "none",
+                        boxShadow: active ? "0 0 40px rgba(193,255,114,0.2)" : "none",
                         transition: "all 0.5s ease",
                       }}
                     >
@@ -349,11 +349,11 @@ function ProcessSection() {
                         {step.icon}
                       </div>
                       <div
-                        className="absolute -top-2 -right-1 font-bold rounded px-1.5 py-0.5"
+                        className="absolute -top-2 -right-1 font-bold rounded px-2 py-0.5"
                         style={{
                           background: active ? ACCENT : "rgba(193,255,114,0.2)",
                           color: active ? "#0a0a0a" : "rgba(193,255,114,0.6)",
-                          fontSize: "10px",
+                          fontSize: "11px",
                           transition: "all 0.4s ease",
                         }}
                       >
@@ -363,16 +363,16 @@ function ProcessSection() {
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 pb-2 pt-2 md:pt-3">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <div className="flex-1 pb-2 pt-3 md:pt-4">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
                       <h3
-                        className="text-lg md:text-xl font-semibold"
+                        className="text-xl md:text-2xl font-semibold"
                         style={{ color: active ? "white" : "rgba(255,255,255,0.4)", transition: "color 0.4s" }}
                       >
                         {step.title}
                       </h3>
                       <span
-                        className="text-xs font-medium px-2 py-0.5 rounded-full"
+                        className="text-sm font-medium px-3 py-0.5 rounded-full"
                         style={{
                           color: active ? "rgba(193,255,114,0.9)" : "rgba(193,255,114,0.3)",
                           background: "rgba(193,255,114,0.07)",
@@ -384,13 +384,13 @@ function ProcessSection() {
                       </span>
                     </div>
                     <p
-                      className="text-sm leading-relaxed mb-2"
+                      className="text-base leading-relaxed mb-3"
                       style={{ color: active ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.2)", transition: "color 0.4s" }}
                     >
                       {step.description}
                     </p>
                     <p
-                      className="text-sm font-medium"
+                      className="text-base font-medium"
                       style={{
                         color: ACCENT,
                         opacity: active ? 0.85 : 0,
@@ -490,11 +490,11 @@ const comingSoonServices = [
 
 function ServicesSection() {
   return (
-    <section id="leistungen" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
+    <section id="leistungen" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-7xl mx-auto">
-        <div className="text-center mb-10 md:mb-16">
+        <div className="text-center mb-14 md:mb-20">
           <div
-            className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block text-sm font-medium px-4 py-1.5 rounded-full mb-5"
             style={{
               color: ACCENT,
               background: "rgba(193,255,114,0.08)",
@@ -503,21 +503,21 @@ function ServicesSection() {
           >
             Leistungen
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight">
             Was ich für dich{" "}
             <span style={{ color: ACCENT }}>automatisiere</span>
           </h2>
-          <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">
             Jede Lösung wird individuell auf dein Business zugeschnitten.
             Keine vorgefertigten Templates.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service) => (
             <div
               key={service.title}
-              className="group p-6 rounded-2xl transition-all duration-300 hover:border-white/15 cursor-default"
+              className="group p-8 rounded-2xl transition-all duration-300 hover:border-white/15 cursor-default"
               style={{
                 background: "hsl(0 0% 7%)",
                 border: "1px solid rgba(255,255,255,0.06)",
@@ -531,18 +531,18 @@ function ServicesSection() {
                 (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)";
               }}
             >
-              <div className="text-3xl mb-4">{service.icon}</div>
-              <h3 className="text-lg font-semibold text-white mb-2">
+              <div className="text-5xl mb-5">{service.icon}</div>
+              <h3 className="text-xl font-semibold text-white mb-3">
                 {service.title}
               </h3>
-              <p className="text-white/50 text-sm leading-relaxed mb-4">
+              <p className="text-white/50 text-base leading-relaxed mb-5">
                 {service.description}
               </p>
               <div className="flex flex-wrap gap-2">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-2 py-0.5 rounded-md"
+                    className="text-sm px-3 py-1 rounded-md"
                     style={{
                       color: "rgba(193,255,114,0.7)",
                       background: "rgba(193,255,114,0.06)",
@@ -559,20 +559,20 @@ function ServicesSection() {
           {comingSoonServices.map((service) => (
             <div
               key={service.title}
-              className="p-6 rounded-2xl cursor-default"
+              className="p-8 rounded-2xl cursor-default"
               style={{
                 background: "hsl(0 0% 5%)",
                 border: "1px solid rgba(255,255,255,0.04)",
                 opacity: 0.55,
               }}
             >
-              <div className="text-3xl mb-4 grayscale">{service.icon}</div>
-              <div className="flex items-start justify-between gap-2 mb-2">
-                <h3 className="text-lg font-semibold text-white/70">
+              <div className="text-5xl mb-5 grayscale">{service.icon}</div>
+              <div className="flex items-start justify-between gap-2 mb-3">
+                <h3 className="text-xl font-semibold text-white/70">
                   {service.title}
                 </h3>
                 <span
-                  className="flex-shrink-0 text-xs font-medium px-2 py-0.5 rounded-md mt-0.5"
+                  className="flex-shrink-0 text-sm font-medium px-2.5 py-0.5 rounded-md mt-0.5"
                   style={{
                     color: "rgba(255,255,255,0.35)",
                     background: "rgba(255,255,255,0.05)",
@@ -582,7 +582,7 @@ function ServicesSection() {
                   Coming Soon
                 </span>
               </div>
-              <p className="text-white/35 text-sm leading-relaxed">
+              <p className="text-white/35 text-base leading-relaxed">
                 {service.description}
               </p>
             </div>
@@ -630,11 +630,11 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
+    <section id="faq" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-5xl mx-auto">
-        <div className="text-center mb-10 md:mb-14">
+        <div className="text-center mb-14 md:mb-18">
           <div
-            className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block text-sm font-medium px-4 py-1.5 rounded-full mb-5"
             style={{
               color: ACCENT,
               background: "rgba(193,255,114,0.08)",
@@ -643,12 +643,12 @@ function FAQSection() {
           >
             FAQ
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 tracking-tight">
             Häufige Fragen
           </h2>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {faqs.map((faq, i) => (
             <div
               key={i}
@@ -659,10 +659,10 @@ function FAQSection() {
               }}
             >
               <button
-                className="w-full text-left p-5 flex items-center justify-between gap-4"
+                className="w-full text-left p-6 flex items-center justify-between gap-4"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-                <span className="text-white font-medium text-sm md:text-base">
+                <span className="text-white font-medium text-base md:text-lg">
                   {faq.question}
                 </span>
                 <span
@@ -672,14 +672,14 @@ function FAQSection() {
                     transform: openIndex === i ? "rotate(45deg)" : "rotate(0deg)",
                   }}
                 >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
                     <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </span>
               </button>
               {openIndex === i && (
-                <div className="px-5 pb-5">
-                  <p className="text-white/50 text-sm leading-relaxed">
+                <div className="px-6 pb-6">
+                  <p className="text-white/50 text-base leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
@@ -709,11 +709,11 @@ function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
+    <section id="kontakt" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-3xl mx-auto">
-        <div className="text-center mb-10 md:mb-14">
+        <div className="text-center mb-12 md:mb-16">
           <div
-            className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
+            className="inline-block text-sm font-medium px-4 py-1.5 rounded-full mb-5"
             style={{
               color: ACCENT,
               background: "rgba(193,255,114,0.08)",
@@ -722,28 +722,28 @@ function ContactSection() {
           >
             Erstgespräch buchen
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight">
             Starte jetzt —{" "}
             <span style={{ color: ACCENT }}>kostenlos</span>
           </h2>
-          <p className="text-white/50 text-base md:text-lg">
+          <p className="text-white/50 text-lg md:text-xl">
             15 Minuten, die deinen Workflow für immer verändern könnten.
           </p>
         </div>
 
         {submitted ? (
           <div
-            className="text-center p-12 rounded-2xl"
+            className="text-center p-14 rounded-2xl"
             style={{
               background: "rgba(193,255,114,0.05)",
               border: "1px solid rgba(193,255,114,0.2)",
             }}
           >
-            <div className="text-5xl mb-4">✓</div>
-            <h3 className="text-2xl font-bold text-white mb-2">
+            <div className="text-6xl mb-5">✓</div>
+            <h3 className="text-3xl font-bold text-white mb-3">
               Nachricht erhalten!
             </h3>
-            <p className="text-white/50">
+            <p className="text-white/50 text-lg">
               Ich melde mich innerhalb von 24 Stunden bei dir. Freue mich auf
               unser Gespräch!
             </p>
@@ -751,15 +751,15 @@ function ContactSection() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="p-5 sm:p-8 rounded-2xl flex flex-col gap-4 sm:gap-5"
+            className="p-7 sm:p-10 rounded-2xl flex flex-col gap-6"
             style={{
               background: "hsl(0 0% 7%)",
               border: "1px solid rgba(255,255,255,0.07)",
             }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm text-white/60 mb-2">
+                <label className="block text-base text-white/60 mb-2">
                   Name *
                 </label>
                 <input
@@ -768,7 +768,7 @@ function ContactSection() {
                   placeholder="Max Mustermann"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all"
+                  className="w-full px-5 py-4 rounded-xl text-base text-white placeholder-white/20 outline-none transition-all"
                   style={{
                     background: "hsl(0 0% 10%)",
                     border: "1px solid rgba(255,255,255,0.1)",
@@ -782,7 +782,7 @@ function ContactSection() {
                 />
               </div>
               <div>
-                <label className="block text-sm text-white/60 mb-2">
+                <label className="block text-base text-white/60 mb-2">
                   E-Mail *
                 </label>
                 <input
@@ -791,7 +791,7 @@ function ContactSection() {
                   placeholder="max@example.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all"
+                  className="w-full px-5 py-4 rounded-xl text-base text-white placeholder-white/20 outline-none transition-all"
                   style={{
                     background: "hsl(0 0% 10%)",
                     border: "1px solid rgba(255,255,255,0.1)",
@@ -807,7 +807,7 @@ function ContactSection() {
             </div>
 
             <div>
-              <label className="block text-sm text-white/60 mb-2">
+              <label className="block text-base text-white/60 mb-2">
                 Was machst du / dein Business?
               </label>
               <input
@@ -815,7 +815,7 @@ function ContactSection() {
                 placeholder="z.B. E-Commerce, Agentur, Coaching, SaaS..."
                 value={form.business}
                 onChange={(e) => setForm({ ...form, business: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all"
+                className="w-full px-5 py-4 rounded-xl text-base text-white placeholder-white/20 outline-none transition-all"
                 style={{
                   background: "hsl(0 0% 10%)",
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -830,15 +830,15 @@ function ContactSection() {
             </div>
 
             <div>
-              <label className="block text-sm text-white/60 mb-2">
+              <label className="block text-base text-white/60 mb-2">
                 Wo siehst du das größte Potenzial?
               </label>
               <textarea
-                rows={4}
+                rows={5}
                 placeholder="Beschreibe kurz, welche Prozesse dich am meisten Zeit kosten oder wo du gerne KI einsetzen würdest..."
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-white/20 outline-none transition-all resize-none"
+                className="w-full px-5 py-4 rounded-xl text-base text-white placeholder-white/20 outline-none transition-all resize-none"
                 style={{
                   background: "hsl(0 0% 10%)",
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -858,9 +858,9 @@ function ContactSection() {
                 required
                 checked={form.privacy}
                 onChange={(e) => setForm({ ...form, privacy: e.target.checked })}
-                className="mt-0.5 shrink-0 w-4 h-4 rounded cursor-pointer accent-[#c1ff72]"
+                className="mt-0.5 shrink-0 w-5 h-5 rounded cursor-pointer accent-[#c1ff72]"
               />
-              <span className="text-xs text-white/40 leading-relaxed">
+              <span className="text-sm text-white/40 leading-relaxed">
                 Ich habe die{" "}
                 <a
                   href="/datenschutz"
@@ -878,13 +878,13 @@ function ContactSection() {
             <button
               type="submit"
               disabled={!form.privacy}
-              className="w-full py-4 rounded-xl font-semibold text-base transition-all active:scale-95 mt-2 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="w-full py-5 rounded-xl font-semibold text-lg transition-all active:scale-95 mt-1 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: ACCENT, color: "#0a0a0a" }}
             >
               Kostenloses Erstgespräch anfragen →
             </button>
 
-            <p className="text-xs text-white/30 text-center">
+            <p className="text-sm text-white/30 text-center">
               Kein Spam. Keine Verpflichtung. Ich melde mich innerhalb von 24h.
             </p>
           </form>
@@ -897,33 +897,33 @@ function ContactSection() {
 function Footer() {
   const { openSettings } = useConsent();
   return (
-    <footer className="py-12 px-8 md:px-16 border-t border-white/5">
-      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer className="py-14 px-8 md:px-16 border-t border-white/5">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-5">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain" />
-          <span className="text-sm text-white/40">RevenueFlow Systems</span>
+          <img src="/logo.png" alt="Logo" className="h-8 w-8 object-contain" />
+          <span className="text-base text-white/40">RevenueFlow Systems</span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-6">
           <a
             href="/impressum"
-            className="text-xs text-white/30 hover:text-white/60 transition-colors"
+            className="text-sm text-white/30 hover:text-white/60 transition-colors"
           >
             Impressum
           </a>
           <a
             href="/datenschutz"
-            className="text-xs text-white/30 hover:text-white/60 transition-colors"
+            className="text-sm text-white/30 hover:text-white/60 transition-colors"
           >
             Datenschutz
           </a>
           <button
             onClick={openSettings}
-            className="text-xs text-white/30 hover:text-white/60 transition-colors"
+            className="text-sm text-white/30 hover:text-white/60 transition-colors"
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
           >
             Cookie-Einstellungen
           </button>
-          <p className="text-xs text-white/20">
+          <p className="text-sm text-white/20">
             © {new Date().getFullYear()} — Alle Rechte vorbehalten
           </p>
         </div>
