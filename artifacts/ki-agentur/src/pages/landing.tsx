@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const ACCENT = "#c1ff72";
 
@@ -277,12 +277,31 @@ const steps = [
 ];
 
 function ProcessSection() {
-  const [hovered, setHovered] = useState<number | null>(null);
+  const [activeSteps, setActiveSteps] = useState<Set<number>>(new Set());
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    stepRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSteps((prev) => new Set([...prev, i]));
+          }
+        },
+        { threshold: 0.4 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
 
   return (
     <section id="prozess" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="text-center mb-12 md:mb-20">
+      <div className="w-full max-w-3xl mx-auto">
+        <div className="text-center mb-16 md:mb-24">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
             style={{
@@ -302,138 +321,97 @@ function ProcessSection() {
           </p>
         </div>
 
-        {/* Desktop: horizontal timeline */}
-        <div className="hidden md:block">
-          <div className="relative flex items-start justify-between">
-            {/* Connecting rail line */}
-            <div
-              className="absolute top-8 left-0 right-0 h-px"
-              style={{
-                background: "linear-gradient(to right, transparent 0%, rgba(193,255,114,0.2) 8%, rgba(193,255,114,0.2) 92%, transparent 100%)",
-              }}
-            />
-            {steps.map((step, i) => (
-              <div
-                key={step.number}
-                className="flex flex-col items-center flex-1"
-                style={{ zIndex: 1 }}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-              >
-                {/* Circle node */}
+        <div className="relative">
+          {/* Vertical rail line */}
+          <div
+            className="absolute left-6 top-0 bottom-0 w-px md:left-8"
+            style={{ background: "rgba(193,255,114,0.12)" }}
+          />
+
+          <div className="flex flex-col gap-12 md:gap-16">
+            {steps.map((step, i) => {
+              const active = activeSteps.has(i);
+              return (
                 <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center relative mb-6"
+                  key={step.number}
+                  ref={(el) => { stepRefs.current[i] = el; }}
+                  className="flex gap-6 md:gap-10 relative"
                   style={{
-                    background: hovered === i ? "rgba(193,255,114,0.14)" : "hsl(0 0% 7%)",
-                    border: `2px solid ${hovered === i ? ACCENT : "rgba(193,255,114,0.3)"}`,
-                    boxShadow: hovered === i ? "0 0 28px rgba(193,255,114,0.18)" : "none",
-                    transform: hovered === i ? "scale(1.12)" : "scale(1)",
-                    transition: "all 0.25s ease",
+                    opacity: active ? 1 : 0.25,
+                    transform: active ? "translateX(0)" : "translateX(-12px)",
+                    transition: "opacity 0.6s ease, transform 0.6s ease",
                   }}
                 >
-                  <div style={{ color: ACCENT }}>{step.icon}</div>
-                  <div
-                    className="absolute -top-2 -right-1 font-bold rounded-md px-1.5 py-0.5"
-                    style={{ background: ACCENT, color: "#0a0a0a", fontSize: "10px" }}
-                  >
-                    {step.number}
+                  {/* Node */}
+                  <div className="flex flex-col items-center shrink-0" style={{ zIndex: 1 }}>
+                    <div
+                      className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center relative"
+                      style={{
+                        background: active ? "rgba(193,255,114,0.12)" : "hsl(0 0% 7%)",
+                        border: `2px solid ${active ? ACCENT : "rgba(193,255,114,0.2)"}`,
+                        boxShadow: active ? "0 0 32px rgba(193,255,114,0.2)" : "none",
+                        transition: "all 0.5s ease",
+                      }}
+                    >
+                      <div style={{ color: active ? ACCENT : "rgba(193,255,114,0.3)", transition: "color 0.4s" }}>
+                        {step.icon}
+                      </div>
+                      <div
+                        className="absolute -top-2 -right-1 font-bold rounded px-1.5 py-0.5"
+                        style={{
+                          background: active ? ACCENT : "rgba(193,255,114,0.2)",
+                          color: active ? "#0a0a0a" : "rgba(193,255,114,0.6)",
+                          fontSize: "10px",
+                          transition: "all 0.4s ease",
+                        }}
+                      >
+                        {step.number}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 pb-2 pt-2 md:pt-3">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <h3
+                        className="text-lg md:text-xl font-semibold"
+                        style={{ color: active ? "white" : "rgba(255,255,255,0.4)", transition: "color 0.4s" }}
+                      >
+                        {step.title}
+                      </h3>
+                      <span
+                        className="text-xs font-medium px-2 py-0.5 rounded-full"
+                        style={{
+                          color: active ? "rgba(193,255,114,0.9)" : "rgba(193,255,114,0.3)",
+                          background: "rgba(193,255,114,0.07)",
+                          border: "1px solid rgba(193,255,114,0.12)",
+                          transition: "color 0.4s",
+                        }}
+                      >
+                        {step.duration}
+                      </span>
+                    </div>
+                    <p
+                      className="text-sm leading-relaxed mb-2"
+                      style={{ color: active ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.2)", transition: "color 0.4s" }}
+                    >
+                      {step.description}
+                    </p>
+                    <p
+                      className="text-sm font-medium"
+                      style={{
+                        color: ACCENT,
+                        opacity: active ? 0.85 : 0,
+                        transition: "opacity 0.5s ease",
+                      }}
+                    >
+                      → {step.highlight}
+                    </p>
                   </div>
                 </div>
-
-                {/* Text content */}
-                <div className="text-center px-2" style={{ maxWidth: "185px" }}>
-                  <span
-                    className="text-xs font-medium px-2 py-0.5 rounded-full mb-2 inline-block"
-                    style={{
-                      color: "rgba(193,255,114,0.8)",
-                      background: "rgba(193,255,114,0.08)",
-                      border: "1px solid rgba(193,255,114,0.15)",
-                    }}
-                  >
-                    {step.duration}
-                  </span>
-                  <h3
-                    className="text-sm font-semibold mb-2"
-                    style={{
-                      color: hovered === i ? "white" : "rgba(255,255,255,0.8)",
-                      transition: "color 0.2s",
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    className="text-xs leading-relaxed"
-                    style={{
-                      color: hovered === i ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.3)",
-                      transition: "color 0.2s",
-                    }}
-                  >
-                    {step.description}
-                  </p>
-                  <p
-                    className="text-xs font-medium mt-2"
-                    style={{
-                      color: ACCENT,
-                      opacity: hovered === i ? 1 : 0,
-                      transition: "opacity 0.2s",
-                    }}
-                  >
-                    {step.highlight}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
-        </div>
-
-        {/* Mobile: vertical timeline */}
-        <div className="md:hidden flex flex-col">
-          {steps.map((step, i) => (
-            <div key={step.number} className="flex gap-4">
-              <div className="flex flex-col items-center">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                  style={{
-                    background: "hsl(0 0% 7%)",
-                    border: "2px solid rgba(193,255,114,0.35)",
-                  }}
-                >
-                  <div style={{ color: ACCENT, transform: "scale(0.72)" }}>{step.icon}</div>
-                </div>
-                {i < steps.length - 1 && (
-                  <div
-                    className="w-px my-1"
-                    style={{ background: "rgba(193,255,114,0.2)", flex: 1, minHeight: "36px" }}
-                  />
-                )}
-              </div>
-              <div className="pb-8 flex-1 pt-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <span
-                    className="font-bold rounded px-1.5 py-0.5"
-                    style={{ background: ACCENT, color: "#0a0a0a", fontSize: "10px" }}
-                  >
-                    {step.number}
-                  </span>
-                  <span
-                    className="text-xs px-2 py-0.5 rounded-full"
-                    style={{
-                      color: "rgba(193,255,114,0.8)",
-                      background: "rgba(193,255,114,0.08)",
-                      border: "1px solid rgba(193,255,114,0.15)",
-                    }}
-                  >
-                    {step.duration}
-                  </span>
-                </div>
-                <h3 className="text-sm font-semibold text-white mb-1">{step.title}</h3>
-                <p className="text-xs text-white/45 leading-relaxed">{step.description}</p>
-                <p className="text-xs font-medium mt-1" style={{ color: ACCENT }}>
-                  {step.highlight}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
