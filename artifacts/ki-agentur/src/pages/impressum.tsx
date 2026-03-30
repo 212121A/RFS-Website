@@ -58,7 +58,7 @@ export default function ImpressumPage() {
             color: ACCENT,
           }}
         >
-          <strong>Hinweis:</strong> Bitte noch die <strong>E-Mail-Adresse</strong> eintragen.
+          Alle Angaben wurden geprüft und eingetragen.
         </div>
 
         <div className="flex flex-col gap-10">
@@ -70,7 +70,7 @@ export default function ImpressumPage() {
 
           <Section title="Kontakt">
             <Row label="Anschrift" value="Turniergraben 1, 73525 Schwäbisch Gmünd, Deutschland" />
-            <Row label="E-Mail" value="[TODO: kontakt@beispiel.de]" />
+            <Row label="E-Mail" value="feller-alexander@gmx.net" />
             <Row label="Telefon" value="+49 177 8090025" />
           </Section>
 

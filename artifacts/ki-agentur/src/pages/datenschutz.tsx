@@ -69,11 +69,12 @@ export default function DatenschutzPage() {
               className="mt-4 p-4 rounded-xl"
               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
             >
-              <p className="italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-                [TODO: Vollständiger Name / Firmenname]<br />
-                [TODO: Anschrift]<br />
-                [TODO: E-Mail]<br />
-                [TODO: Telefon]
+              <p className="text-white/60">
+                RevenueFlow Systems (Einzelunternehmen)<br />
+                Alexander Feller<br />
+                Turniergraben 1, 73525 Schwäbisch Gmünd<br />
+                feller-alexander@gmx.net<br />
+                +49 177 8090025
               </p>
             </div>
           </DSSection>
@@ -184,7 +185,7 @@ export default function DatenschutzPage() {
             <p className="mt-4">
               Zur Ausübung deiner Rechte wende dich an:{" "}
               <span className="italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-                [TODO: E-Mail-Adresse]
+                feller-alexander@gmx.net
               </span>
             </p>
           </DSSection>
