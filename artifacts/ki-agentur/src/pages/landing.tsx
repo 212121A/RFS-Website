@@ -3,60 +3,6 @@ import { useConsent } from "@/context/ConsentContext";
 
 const ACCENT = "#c1ff72";
 
-// Light bands that float upward along the left/right margins (xl+ only)
-const BANDS = [
-  { x: 12, h: 200, dur: 6.5, delay: 0,   op: 0.50, w: 1.5 },
-  { x: 28, h: 340, dur: 9.5, delay: 2.1, op: 0.22, w: 1,   white: true },
-  { x: 44, h: 140, dur: 5.2, delay: 4.3, op: 0.60, w: 2.5 },
-  { x: 62, h: 260, dur: 8,   delay: 1.0, op: 0.18, w: 1   },
-  { x: 78, h: 180, dur: 6,   delay: 3.5, op: 0.38, w: 1.5 },
-  { x: 90, h: 110, dur: 4.5, delay: 5.8, op: 0.28, w: 2   },
-] as const;
-
-function SideLights({ side }: { side: "left" | "right" }) {
-  return (
-    <div
-      className={`absolute ${side === "left" ? "left-0" : "right-0"} top-0 bottom-0 pointer-events-none hidden xl:block overflow-hidden`}
-      style={{ width: "clamp(80px, 9vw, 160px)" }}
-    >
-      {BANDS.map((band, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            left: `${band.x}%`,
-            width: `${band.w}px`,
-            height: `${band.h}px`,
-            top: 0,
-            background: `linear-gradient(to bottom, transparent, ${"white" in band && band.white ? "rgba(255,255,255,0.7)" : ACCENT}, transparent)`,
-            opacity: band.op,
-            filter: `blur(${band.w >= 2 ? 1.5 : 0.6}px)`,
-            animationName: "sideBandFloat",
-            animationDuration: `${band.dur}s`,
-            animationDelay: `${band.delay}s`,
-            animationTimingFunction: "linear",
-            animationIterationCount: "infinite",
-          }}
-        />
-      ))}
-
-      {/* Extra soft glow column running full height */}
-      <div
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: 0,
-          bottom: 0,
-          width: "40px",
-          transform: "translateX(-50%)",
-          background: `linear-gradient(to right, transparent, rgba(193,255,114,0.025), transparent)`,
-          pointerEvents: "none",
-        }}
-      />
-    </div>
-  );
-}
-
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -174,9 +120,6 @@ function HeroSection() {
             "radial-gradient(circle, rgba(193,255,114,0.07) 0%, transparent 70%)",
         }}
       />
-
-      <SideLights side="left" />
-      <SideLights side="right" />
 
       <div className="relative w-full max-w-6xl mx-auto text-center">
         <div
@@ -349,10 +292,6 @@ function ProcessSection() {
 
   return (
     <section id="prozess" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden">
-
-      <SideLights side="left" />
-      <SideLights side="right" />
-
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-20 md:mb-28">
           <div
@@ -551,9 +490,7 @@ const comingSoonServices = [
 
 function ServicesSection() {
   return (
-    <section id="leistungen" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden">
-      <SideLights side="left" />
-      <SideLights side="right" />
+    <section id="leistungen" className="py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-7xl mx-auto">
         <div className="text-center mb-14 md:mb-20">
           <div
