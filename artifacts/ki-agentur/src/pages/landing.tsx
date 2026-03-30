@@ -309,11 +309,6 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2">
-          <path d="M12 5v14M5 12l7 7 7-7" />
-        </svg>
-      </div>
     </section>
   );
 }
