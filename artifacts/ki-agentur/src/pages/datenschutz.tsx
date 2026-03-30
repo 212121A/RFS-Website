@@ -50,16 +50,6 @@ export default function DatenschutzPage() {
           Stand: {new Date().toLocaleDateString("de-DE", { month: "long", year: "numeric" })}
         </p>
 
-        <div
-          className="mb-10 px-5 py-4 rounded-xl text-sm"
-          style={{
-            background: "rgba(193,255,114,0.05)",
-            border: "1px solid rgba(193,255,114,0.15)",
-            color: ACCENT,
-          }}
-        >
-          <strong>Hinweis:</strong> Mit <code className="bg-white/10 px-1 rounded">[TODO]</code> markierte Stellen musst du mit deinen echten Angaben ersetzen. Optionale Abschnitte kannst du entfernen, falls der jeweilige Dienst nicht eingesetzt wird.
-        </div>
 
         <div className="flex flex-col gap-10 text-white/60 text-sm leading-relaxed">
 
@@ -90,13 +80,13 @@ export default function DatenschutzPage() {
 
           <DSSection title="3. Hosting">
             <p>
-              Diese Website wird bei folgendem Anbieter gehostet:
+              Diese Website wird gehostet von:
             </p>
-            <p className="mt-3 italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-              [TODO: Hosting-Anbieter, z.B. Replit / Vercel / Hetzner — Name und Anschrift des Anbieters eintragen und ggf. Auftragsverarbeitungsvertrag (AVV) abschließen]
+            <p className="mt-3 text-white/60">
+              Replit, Inc., 55 2nd Street, Suite 2500, San Francisco, CA 94105, USA
             </p>
             <p className="mt-3">
-              Der Einsatz dieses Hosters erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden (Art. 6 Abs. 1 lit. b DSGVO) und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter (Art. 6 Abs. 1 lit. f DSGVO).
+              Der Einsatz dieses Hosters erfolgt im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots (Art. 6 Abs. 1 lit. f DSGVO). Da der Anbieter seinen Sitz in den USA hat, erfolgt eine Datenübermittlung in ein Drittland. Replit setzt Standardvertragsklauseln gemäß Art. 46 Abs. 2 lit. c DSGVO ein. Mit Replit wurde ein Auftragsverarbeitungsvertrag (AVV) abgeschlossen.
             </p>
           </DSSection>
 
@@ -131,38 +121,30 @@ export default function DatenschutzPage() {
 
           <DSSection title="6. E-Mail-Kontakt">
             <p>
-              Wenn du uns per E-Mail kontaktierst, werden deine Angaben inklusive deiner E-Mail-Adresse zur Bearbeitung der Anfrage gespeichert. E-Mails werden bei folgendem Anbieter verarbeitet:
+              Wenn du uns per E-Mail kontaktierst, werden deine Angaben inklusive deiner E-Mail-Adresse zur Bearbeitung der Anfrage gespeichert. E-Mails werden über Google Workspace verarbeitet:
             </p>
-            <p className="mt-3 italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-              [TODO: E-Mail-Anbieter, z.B. Google Workspace / Microsoft 365 / Proton Mail — ggf. AVV abschließen]
+            <p className="mt-3 text-white/60">
+              Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland
             </p>
-          </DSSection>
-
-          <DSSection title="7. Terminbuchung [OPTIONAL]">
-            <div
-              className="px-4 py-3 rounded-lg mb-3 text-xs"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
-            >
-              Diesen Abschnitt nur aktivieren, wenn ein Terminbuchungstool (z.B. Calendly, TidyCal, Cal.com) eingebunden ist — sonst entfernen.
-            </div>
-            <p className="italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-              [TODO: Für die Terminbuchung setzen wir [Terminbuchungs-Tool] ein. Anbieter: [Name, Anschrift]. Beim Buchen eines Termins werden folgende Daten verarbeitet: Name, E-Mail, Terminzeit. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Weitere Informationen findest du in der Datenschutzerklärung des Anbieters: [Link]]
+            <p className="mt-3">
+              Mit Google wurde ein Auftragsverarbeitungsvertrag abgeschlossen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer effizienten Kommunikation). Weitere Informationen findest du in der Datenschutzerklärung von Google:{" "}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: ACCENT }}>policies.google.com/privacy</a>.
             </p>
           </DSSection>
 
-          <DSSection title="8. Analyse & Tracking [OPTIONAL]">
-            <div
-              className="px-4 py-3 rounded-lg mb-3 text-xs"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
-            >
-              Diesen Abschnitt nur aktivieren, wenn ein Analyse-Tool eingesetzt wird — sonst entfernen.
-            </div>
-            <p className="italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-              [TODO: Wir setzen [Analytics-Tool, z.B. Plausible / Fathom / Google Analytics] ein. Anbieter: [Name, Anschrift]. Rechtsgrundlage und weitere Details hier eintragen.]
+          <DSSection title="7. Analyse & Tracking">
+            <p>
+              Diese Website nutzt Plausible Analytics, ein datenschutzfreundliches Analysetool ohne Cookies und ohne Verarbeitung personenbezogener Daten:
+            </p>
+            <p className="mt-3 text-white/60">
+              Plausible Insights OÜ, Västriku tn 2, 50403 Tartu, Estland
+            </p>
+            <p className="mt-3">
+              Plausible erhebt keine personenbezogenen Daten, setzt keine Cookies und ist vollständig DSGVO-konform. Es werden ausschließlich aggregierte, anonymisierte Nutzungsdaten erhoben (z.B. Seitenaufrufe, Referrer). Eine Einwilligung ist nicht erforderlich. Weitere Informationen: <a href="https://plausible.io/privacy" target="_blank" rel="noopener noreferrer" style={{ color: ACCENT }}>plausible.io/privacy</a>.
             </p>
           </DSSection>
 
-          <DSSection title="9. Cookies">
+          <DSSection title="8. Cookies">
             <p>
               Diese Website setzt ausschließlich technisch notwendige Cookies ein, die für den Betrieb der Website erforderlich sind. Es werden keine Marketing-, Tracking- oder Analyse-Cookies verwendet.
             </p>
@@ -171,7 +153,7 @@ export default function DatenschutzPage() {
             </p>
           </DSSection>
 
-          <DSSection title="10. Rechte der betroffenen Personen">
+          <DSSection title="9. Rechte der betroffenen Personen">
             <p>Du hast gegenüber uns folgende Rechte hinsichtlich deiner personenbezogenen Daten:</p>
             <ul className="mt-3 ml-4 space-y-1 list-disc list-outside">
               <li><strong className="text-white/70">Auskunft</strong> — Art. 15 DSGVO</li>
@@ -190,26 +172,24 @@ export default function DatenschutzPage() {
             </p>
           </DSSection>
 
-          <DSSection title="11. Beschwerderecht bei einer Aufsichtsbehörde">
+          <DSSection title="10. Beschwerderecht bei einer Aufsichtsbehörde">
             <p>
-              Du hast das Recht, dich bei einer Datenschutzbehörde über unsere Verarbeitung deiner personenbezogenen Daten zu beschweren. Die zuständige Aufsichtsbehörde richtet sich nach deinem Wohnsitz bzw. dem Bundesland des Unternehmens:
+              Du hast das Recht, dich bei einer Datenschutzbehörde über unsere Verarbeitung deiner personenbezogenen Daten zu beschweren. Zuständige Aufsichtsbehörde für Baden-Württemberg:
             </p>
-            <p className="mt-3 italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-              [TODO: Zuständige Aufsichtsbehörde eintragen, z.B. Landesbeauftragte für Datenschutz und Informationsfreiheit NRW, Bayern, Berlin etc.]
+            <p className="mt-3 text-white/60">
+              Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br />
+              Postfach 10 29 32, 70025 Stuttgart<br />
+              <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank" rel="noopener noreferrer" style={{ color: ACCENT }}>www.baden-wuerttemberg.datenschutz.de</a>
             </p>
           </DSSection>
 
-          <DSSection title="12. Speicherdauer">
+          <DSSection title="11. Speicherdauer">
             <p>
-              Personenbezogene Daten werden gelöscht, sobald der Zweck der Speicherung entfällt und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Kontaktanfragen werden in der Regel nach Abschluss der Kommunikation und spätestens nach{" "}
-              <span className="italic" style={{ color: "rgba(193,255,114,0.6)" }}>
-                [TODO: z.B. 6 Monaten / 3 Jahren]
-              </span>{" "}
-              gelöscht, sofern keine Vertragsbeziehung entstanden ist.
+              Personenbezogene Daten werden gelöscht, sobald der Zweck der Speicherung entfällt und keine gesetzlichen Aufbewahrungspflichten entgegenstehen. Kontaktanfragen werden in der Regel nach Abschluss der Kommunikation und spätestens nach <strong className="text-white/70">6 Monaten</strong> gelöscht, sofern keine Vertragsbeziehung entstanden ist.
             </p>
           </DSSection>
 
-          <DSSection title="13. Datensicherheit">
+          <DSSection title="12. Datensicherheit">
             <p>
               Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennst du daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt.
             </p>
