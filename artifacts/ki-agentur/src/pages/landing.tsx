@@ -23,7 +23,7 @@ function Navbar() {
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="w-full px-8 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Logo" className="h-9 w-9 object-contain" />
           <span className="font-semibold text-white text-sm tracking-wide">
@@ -109,7 +109,7 @@ function Navbar() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-8 md:px-16">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -129,7 +129,7 @@ function HeroSection() {
         }}
       />
 
-      <div className="relative max-w-4xl mx-auto text-center">
+      <div className="relative w-full max-w-6xl mx-auto text-center">
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8 border"
           style={{
@@ -142,7 +142,7 @@ function HeroSection() {
           Kostenlose Erstberatung — 15 Minuten, keine Verpflichtung
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-6 leading-tight tracking-tight">
           Dein Business.
           <br />
           <span style={{ color: ACCENT }}>Automatisiert.</span>
@@ -267,8 +267,8 @@ const steps = [
 
 function ProcessSection() {
   return (
-    <section id="prozess" className="py-32 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="prozess" className="py-32 px-8 md:px-16">
+      <div className="w-full max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
@@ -289,28 +289,31 @@ function ProcessSection() {
           </p>
         </div>
 
-        <div className="relative">
-          <div
-            className="absolute left-[39px] md:left-[55px] top-0 bottom-0 w-px hidden sm:block"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent, rgba(193,255,114,0.2), transparent)",
-            }}
-          />
-
-          <div className="flex flex-col gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {steps.map((step, i) => (
               <div
                 key={step.number}
-                className="flex gap-6 md:gap-10 group"
-                style={{ animationDelay: `${i * 0.1}s` }}
+                className="flex gap-6 group p-6 rounded-2xl transition-all duration-300"
+                style={{
+                  background: "rgba(255,255,255,0.015)",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  animationDelay: `${i * 0.1}s`,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.background = "rgba(193,255,114,0.03)";
+                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(193,255,114,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.015)";
+                  (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)";
+                }}
               >
-                <div className="flex-shrink-0 flex flex-col items-center">
+                <div className="flex-shrink-0">
                   <div
-                    className="w-20 h-20 md:w-28 md:h-28 rounded-2xl flex items-center justify-center relative transition-all duration-300 group-hover:scale-105"
+                    className="w-14 h-14 rounded-xl flex items-center justify-center relative transition-all duration-300 group-hover:scale-105"
                     style={{
-                      background: "rgba(193,255,114,0.06)",
-                      border: "1px solid rgba(193,255,114,0.15)",
+                      background: "rgba(193,255,114,0.08)",
+                      border: "1px solid rgba(193,255,114,0.2)",
                     }}
                   >
                     <div style={{ color: ACCENT }}>{step.icon}</div>
@@ -327,9 +330,9 @@ function ProcessSection() {
                   </div>
                 </div>
 
-                <div className="flex-1 pb-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-3">
-                    <h3 className="text-xl font-semibold text-white">
+                <div className="flex-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                    <h3 className="text-base font-semibold text-white">
                       {step.title}
                     </h3>
                     <span
@@ -355,7 +358,6 @@ function ProcessSection() {
                 </div>
               </div>
             ))}
-          </div>
         </div>
       </div>
     </section>
@@ -409,8 +411,8 @@ const services = [
 
 function ServicesSection() {
   return (
-    <section id="leistungen" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="leistungen" className="py-32 px-8 md:px-16">
+      <div className="w-full max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
@@ -432,7 +434,7 @@ function ServicesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {services.map((service) => (
             <div
               key={service.title}
@@ -517,8 +519,8 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-32 px-6">
-      <div className="max-w-3xl mx-auto">
+    <section id="faq" className="py-32 px-8 md:px-16">
+      <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
@@ -594,8 +596,8 @@ function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="py-32 px-6">
-      <div className="max-w-2xl mx-auto">
+    <section id="kontakt" className="py-32 px-8 md:px-16">
+      <div className="w-full max-w-3xl mx-auto">
         <div className="text-center mb-16">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
@@ -757,8 +759,8 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="py-12 px-6 border-t border-white/5">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <footer className="py-12 px-8 md:px-16 border-t border-white/5">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain" />
           <span className="text-sm text-white/40">RevenueFlow Systems</span>
