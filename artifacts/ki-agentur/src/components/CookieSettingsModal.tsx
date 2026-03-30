@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { categoryMeta, ConsentCategory } from "@/config/cookieConfig";
 import { useConsent, type ConsentState } from "@/context/ConsentContext";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 const ACCENT = "#c1ff72";
 
@@ -32,76 +39,36 @@ export function CookieSettingsModal() {
     }
   }, [settingsOpen, consent]);
 
-  if (!settingsOpen) return null;
-
   const handleSave = () => {
     const state: ConsentState = { necessary: true, ...local };
     saveConsent(state);
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4"
-      style={{ background: "rgba(0,0,0,0.7)" }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) closeSettings();
-      }}
-    >
-      <div
-        className="w-full max-w-md rounded-2xl p-6"
+    <Dialog open={settingsOpen} onOpenChange={(open) => !open && closeSettings()}>
+      <DialogContent
+        className="max-w-md p-6 gap-0"
         style={{
           background: "hsl(0 0% 8%)",
           border: "1px solid rgba(255,255,255,0.1)",
           boxShadow: "0 8px 48px rgba(0,0,0,0.7)",
-          maxHeight: "90vh",
-          overflowY: "auto",
         }}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Cookie-Einstellungen"
       >
-        <div className="flex items-start justify-between mb-5">
-          <div>
-            <h2 className="text-base font-semibold text-white">
-              Cookie-Einstellungen
-            </h2>
-            <p className="text-xs text-white/40 mt-1">
-              Passe deine Datenschutzeinstellungen an.{" "}
-              <a
-                href="/datenschutz"
-                style={{ color: ACCENT }}
-                className="underline underline-offset-2"
-              >
-                Datenschutzerklärung
-              </a>
-            </p>
-          </div>
-          <button
-            onClick={closeSettings}
-            aria-label="Schließen"
-            className="ml-4 shrink-0 transition-colors"
-            style={{ color: "rgba(255,255,255,0.3)", background: "none", border: "none", cursor: "pointer" }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color =
-                "rgba(255,255,255,0.7)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.color =
-                "rgba(255,255,255,0.3)")
-            }
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
+        <DialogHeader className="mb-5">
+          <DialogTitle className="text-base font-semibold text-white">
+            Cookie-Einstellungen
+          </DialogTitle>
+          <DialogDescription className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.4)" }}>
+            Passe deine Datenschutzeinstellungen an.{" "}
+            <a
+              href="/datenschutz"
+              className="underline underline-offset-2 hover:opacity-80 transition-opacity"
+              style={{ color: ACCENT }}
             >
-              <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
-            </svg>
-          </button>
-        </div>
+              Datenschutzerklärung
+            </a>
+          </DialogDescription>
+        </DialogHeader>
 
         <div className="flex flex-col gap-3 mb-6">
           <CategoryRow
@@ -118,9 +85,7 @@ export function CookieSettingsModal() {
               description={categoryMeta[key].description}
               checked={local[key]}
               disabled={false}
-              onChange={(val) =>
-                setLocal((prev) => ({ ...prev, [key]: val }))
-              }
+              onChange={(val) => setLocal((prev) => ({ ...prev, [key]: val }))}
             />
           ))}
         </div>
@@ -128,39 +93,25 @@ export function CookieSettingsModal() {
         <div className="flex flex-col sm:flex-row gap-2">
           <button
             onClick={handleSave}
-            className="flex-1 text-xs font-medium px-4 py-2.5 rounded-lg transition-colors"
+            className="flex-1 text-xs font-semibold px-4 py-2.5 rounded-lg transition-opacity hover:opacity-80 cursor-pointer"
             style={{
-              color: "rgba(255,255,255,0.65)",
-              background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              color: "rgba(255,255,255,0.8)",
+              background: "rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.15)",
             }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.background =
-                "rgba(255,255,255,0.1)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.background =
-                "rgba(255,255,255,0.06)")
-            }
           >
             Auswahl speichern
           </button>
           <button
             onClick={acceptAll}
-            className="flex-1 text-xs font-semibold px-4 py-2.5 rounded-lg transition-colors"
+            className="flex-1 text-xs font-semibold px-4 py-2.5 rounded-lg transition-opacity hover:opacity-80 cursor-pointer"
             style={{ color: "#000", background: ACCENT }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.background = "#d4ff8a")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLButtonElement).style.background = ACCENT)
-            }
           >
             Alle akzeptieren
           </button>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -187,7 +138,9 @@ function CategoryRow({
     >
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1 flex-wrap">
-          <span className="text-sm font-medium text-white/80">{label}</span>
+          <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.8)" }}>
+            {label}
+          </span>
           {disabled && (
             <span
               className="text-xs px-1.5 py-0.5 rounded"
@@ -202,7 +155,9 @@ function CategoryRow({
             </span>
           )}
         </div>
-        <p className="text-xs text-white/40 leading-relaxed">{description}</p>
+        <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.4)" }}>
+          {description}
+        </p>
       </div>
       <div className="shrink-0 mt-0.5">
         <Toggle checked={checked} disabled={disabled} onChange={onChange} />
@@ -227,6 +182,7 @@ function Toggle({
       aria-checked={checked}
       disabled={disabled}
       onClick={() => !disabled && onChange(!checked)}
+      className={disabled ? "cursor-not-allowed" : "cursor-pointer"}
       style={{
         position: "relative",
         display: "inline-flex",
@@ -242,7 +198,6 @@ function Toggle({
             ? "rgba(193,255,114,0.35)"
             : ACCENT
           : "rgba(255,255,255,0.12)",
-        cursor: disabled ? "not-allowed" : "pointer",
       }}
     >
       <span

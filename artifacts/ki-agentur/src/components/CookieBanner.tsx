@@ -31,7 +31,7 @@ export function CookieBanner() {
               Statistik und externe Inhalte — nur mit deiner Einwilligung.{" "}
               <a
                 href="/datenschutz"
-                className="underline underline-offset-2"
+                className="underline underline-offset-2 hover:opacity-80 transition-opacity"
                 style={{ color: ACCENT }}
               >
                 Datenschutzerklärung
@@ -42,53 +42,36 @@ export function CookieBanner() {
           <div className="flex flex-wrap sm:flex-nowrap gap-2 shrink-0">
             <button
               onClick={acceptNecessary}
-              className="text-xs font-medium px-4 py-2 rounded-lg transition-colors"
+              className="text-xs font-semibold px-4 py-2 rounded-lg transition-opacity hover:opacity-75 cursor-pointer"
               style={{
-                color: "rgba(255,255,255,0.65)",
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                color: "rgba(255,255,255,0.8)",
+                background: "transparent",
+                border: "1px solid rgba(255,255,255,0.35)",
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background =
-                  "rgba(255,255,255,0.1)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background =
-                  "rgba(255,255,255,0.06)")
-              }
             >
               Nur notwendige
             </button>
 
             <button
               onClick={openSettings}
-              className="text-xs font-medium px-4 py-2 rounded-lg transition-colors"
+              className="text-xs font-medium px-4 py-2 rounded-lg transition-opacity hover:opacity-75 cursor-pointer"
               style={{
-                color: "rgba(255,255,255,0.45)",
+                color: "rgba(255,255,255,0.4)",
                 background: "transparent",
-                border: "1px solid rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.1)",
               }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background =
-                  "rgba(255,255,255,0.04)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background = "transparent")
-              }
             >
               Einstellungen
             </button>
 
             <button
               onClick={acceptAll}
-              className="text-xs font-semibold px-4 py-2 rounded-lg transition-colors"
-              style={{ color: "#000", background: ACCENT }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background = "#d4ff8a")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLButtonElement).style.background = ACCENT)
-              }
+              className="text-xs font-semibold px-4 py-2 rounded-lg transition-opacity hover:opacity-75 cursor-pointer"
+              style={{
+                color: ACCENT,
+                background: "transparent",
+                border: `1px solid ${ACCENT}`,
+              }}
             >
               Alle akzeptieren
             </button>
