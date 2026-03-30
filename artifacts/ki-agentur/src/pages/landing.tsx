@@ -109,7 +109,7 @@ function Navbar() {
 
 function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-8 md:px-16">
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden px-5 md:px-16 pt-20">
       {/* Background grid */}
       <div
         className="absolute inset-0 opacity-[0.03]"
@@ -131,32 +131,32 @@ function HeroSection() {
 
       <div className="relative w-full max-w-6xl mx-auto text-center">
         <div
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8 border"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-6 border"
           style={{
             color: ACCENT,
             borderColor: "rgba(193,255,114,0.3)",
             background: "rgba(193,255,114,0.05)",
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: ACCENT }} />
-          Kostenlose Erstberatung — 15 Minuten, keine Verpflichtung
+          <span className="w-1.5 h-1.5 rounded-full inline-block flex-shrink-0" style={{ background: ACCENT }} />
+          <span>Kostenlose Erstberatung — 15 Min., keine Verpflichtung</span>
         </div>
 
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-6 leading-tight tracking-tight">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-5 leading-[1.1] tracking-tight">
           Dein Business.
           <br />
           <span style={{ color: ACCENT }}>Automatisiert.</span>
         </h1>
 
-        <p className="text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-8 leading-relaxed px-2">
           Ich analysiere deine individuellen Prozesse und implementiere KI-Agenten,
           die dir Zeit sparen, Fehler reduzieren und dein Business skalieren.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a
             href="#kontakt"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all hover:opacity-90 active:scale-95"
+            className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-base transition-all hover:opacity-90 active:scale-95"
             style={{ background: ACCENT, color: "#0a0a0a" }}
           >
             Jetzt 15 Min. Erstgespräch buchen
@@ -166,23 +166,23 @@ function HeroSection() {
           </a>
           <a
             href="#prozess"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all border border-white/10 text-white hover:border-white/20 hover:bg-white/5"
+            className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-base transition-all border border-white/10 text-white hover:border-white/20 hover:bg-white/5"
           >
             Prozess ansehen
           </a>
         </div>
 
-        <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8">
+        <div className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-10">
           {[
             { number: "100%", label: "Individuelle Lösungen" },
-            { number: "15 Min.", label: "Kostenlose Erstberatung" },
-            { number: "∞", label: "Skalierungspotential" },
+            { number: "15 Min.", label: "Erstberatung" },
+            { number: "∞", label: "Skalierbarkeit" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-2xl font-bold" style={{ color: ACCENT }}>
+              <div className="text-xl sm:text-2xl font-bold" style={{ color: ACCENT }}>
                 {stat.number}
               </div>
-              <div className="text-sm text-white/40 mt-1">{stat.label}</div>
+              <div className="text-xs sm:text-sm text-white/40 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -267,9 +267,9 @@ const steps = [
 
 function ProcessSection() {
   return (
-    <section id="prozess" className="py-32 px-8 md:px-16">
+    <section id="prozess" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-7xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 md:mb-16">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
             style={{
@@ -280,11 +280,11 @@ function ProcessSection() {
           >
             Der Prozess
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Von der Idee zur{" "}
             <span style={{ color: ACCENT }}>fertigen Lösung</span>
           </h2>
-          <p className="text-white/50 text-lg max-w-2xl mx-auto">
+          <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
             Ein klarer, strukturierter Weg — damit du immer weißt, wo wir stehen.
           </p>
         </div>
@@ -411,9 +411,9 @@ const services = [
 
 function ServicesSection() {
   return (
-    <section id="leistungen" className="py-32 px-8 md:px-16">
+    <section id="leistungen" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-7xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 md:mb-16">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
             style={{
@@ -424,11 +424,11 @@ function ServicesSection() {
           >
             Leistungen
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Was ich für dich{" "}
             <span style={{ color: ACCENT }}>umsetzen kann</span>
           </h2>
-          <p className="text-white/50 text-lg max-w-2xl mx-auto">
+          <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
             Jede Lösung wird individuell auf dein Business zugeschnitten.
             Keine vorgefertigten Templates.
           </p>
@@ -519,9 +519,9 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-32 px-8 md:px-16">
+    <section id="faq" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-5xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-14">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
             style={{
@@ -532,7 +532,7 @@ function FAQSection() {
           >
             FAQ
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Häufige Fragen
           </h2>
         </div>
@@ -596,9 +596,9 @@ function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="py-32 px-8 md:px-16">
+    <section id="kontakt" className="py-20 md:py-32 px-5 md:px-8 lg:px-16">
       <div className="w-full max-w-3xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-14">
           <div
             className="inline-block text-xs font-medium px-3 py-1 rounded-full mb-4"
             style={{
@@ -609,11 +609,11 @@ function ContactSection() {
           >
             Erstgespräch buchen
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Starte jetzt —{" "}
             <span style={{ color: ACCENT }}>kostenlos</span>
           </h2>
-          <p className="text-white/50 text-lg">
+          <p className="text-white/50 text-base md:text-lg">
             15 Minuten, die deinen Workflow für immer verändern könnten.
           </p>
         </div>
@@ -638,7 +638,7 @@ function ContactSection() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="p-8 rounded-2xl flex flex-col gap-5"
+            className="p-5 sm:p-8 rounded-2xl flex flex-col gap-4 sm:gap-5"
             style={{
               background: "rgba(255,255,255,0.02)",
               border: "1px solid rgba(255,255,255,0.07)",
