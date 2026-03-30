@@ -598,11 +598,13 @@ function ContactSection() {
     email: "",
     business: "",
     message: "",
+    privacy: false,
   });
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.privacy) return;
     setSubmitted(true);
   };
 
@@ -750,9 +752,33 @@ function ContactSection() {
               />
             </div>
 
+            <label className="flex items-start gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                required
+                checked={form.privacy}
+                onChange={(e) => setForm({ ...form, privacy: e.target.checked })}
+                className="mt-0.5 shrink-0 w-4 h-4 rounded cursor-pointer accent-[#c1ff72]"
+              />
+              <span className="text-xs text-white/40 leading-relaxed">
+                Ich habe die{" "}
+                <a
+                  href="/datenschutz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline transition-colors hover:text-white/70"
+                  style={{ color: ACCENT, opacity: 0.8 }}
+                >
+                  Datenschutzerklärung
+                </a>{" "}
+                gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. *
+              </span>
+            </label>
+
             <button
               type="submit"
-              className="w-full py-4 rounded-xl font-semibold text-base transition-all hover:opacity-90 active:scale-95 mt-2"
+              disabled={!form.privacy}
+              className="w-full py-4 rounded-xl font-semibold text-base transition-all active:scale-95 mt-2 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: ACCENT, color: "#0a0a0a" }}
             >
               Kostenloses Erstgespräch anfragen →
@@ -776,9 +802,23 @@ function Footer() {
           <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain" />
           <span className="text-sm text-white/40">RevenueFlow Systems</span>
         </div>
-        <p className="text-xs text-white/30">
-          © {new Date().getFullYear()} — Alle Rechte vorbehalten
-        </p>
+        <div className="flex items-center gap-6">
+          <a
+            href="/impressum"
+            className="text-xs text-white/30 hover:text-white/60 transition-colors"
+          >
+            Impressum
+          </a>
+          <a
+            href="/datenschutz"
+            className="text-xs text-white/30 hover:text-white/60 transition-colors"
+          >
+            Datenschutz
+          </a>
+          <p className="text-xs text-white/20">
+            © {new Date().getFullYear()} — Alle Rechte vorbehalten
+          </p>
+        </div>
       </div>
     </footer>
   );

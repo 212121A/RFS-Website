@@ -1,0 +1,60 @@
+Erweitere meine bestehende deutsche Business-Website um die rechtlich notwendigen Seiten und Verlinkungen für Deutschland.
+
+Wichtige Vorgaben:
+- Erstelle separate Seiten für:
+  1. /impressum
+  2. /datenschutz
+- Füge im Footer auf jeder Seite sichtbare Links zu Impressum und Datenschutz hinzu.
+- Füge zusätzlich im Kontaktformular einen kurzen Datenschutzhinweis mit Checkbox ein:
+  "Ich habe die Datenschutzerklärung gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu."
+- Verlinke das Wort "Datenschutzerklärung" direkt auf /datenschutz.
+- Sorge dafür, dass das Formular ohne aktive Checkbox nicht abgesendet werden kann.
+- Erstelle die Seiten in demselben visuellen Stil wie der Rest der Website.
+- Nutze saubere, responsive Komponenten.
+- Keine Platzhalter-Texte wie lorem ipsum.
+
+Impressum:
+- Erstelle eine strukturierte Impressums-Seite mit folgenden Feldern als klar sichtbare Platzhalter, die ich später selbst ersetze:
+  - Vollständiger Name / Firmenname
+  - Rechtsform
+  - Vertretungsberechtigte Person
+  - Anschrift
+  - E-Mail
+  - Telefonnummer
+  - USt-IdNr. falls vorhanden
+  - Berufsbezeichnung / Tätigkeitsbeschreibung
+  - Verantwortlich für den Inhalt nach § 18 MStV falls relevant
+- Füge einen kurzen Hinweis ein, dass die Angaben vom Betreiber zu prüfen und zu vervollständigen sind.
+
+Datenschutz:
+- Erstelle eine umfangreiche Datenschutzerklärung auf Deutsch mit sauber gegliederten Abschnitten für:
+  - Verantwortlicher
+  - Allgemeine Hinweise zur Datenverarbeitung
+  - Hosting
+  - Server-Logfiles
+  - Kontaktformular
+  - Terminbuchung, falls ein Termintool wie Calendly oder ähnliches eingebunden wird
+  - E-Mail-Kontakt
+  - Einsatz von Analyse- oder Trackingtools nur falls vorhanden
+  - Cookies und Einwilligungsmanagement nur falls technisch notwendig oder bereits eingesetzt
+  - Rechte betroffener Personen
+  - Beschwerderecht bei einer Aufsichtsbehörde
+  - Speicherdauer
+  - Empfänger / Auftragsverarbeiter
+  - Datensicherheit
+- Schreibe die Datenschutzerklärung so, dass klar markierte Platzhalter für meine echten Tools und Anbieter enthalten sind, z. B. [Hosting-Anbieter], [Analytics-Tool], [Terminbuchungs-Tool], [E-Mail-Anbieter].
+- Wenn auf der Website aktuell noch keine Trackingtools, keinen Newsletter und keinen Cookie-Banner eingebunden sind, dann soll die Datenschutzerklärung das nicht fälschlich behaupten.
+- Baue stattdessen klare optionale Blöcke ein, die ich später aktivieren oder entfernen kann.
+
+Technische Anforderungen:
+- Footer global erweitern
+- Routen anlegen
+- Formularvalidierung ergänzen
+- Checkbox-State in Formularlogik integrieren
+- Saubere semantische HTML-Struktur
+- Mobile optimieren
+- SEO-Titel für Impressum und Datenschutz setzen
+
+Wichtig:
+- Arbeite mit klaren TODO-Markierungen an den Stellen, wo ich meine echten Unternehmensdaten und Anbieter eintragen muss.
+- Gib mir am Ende eine Liste mit allen Stellen aus, die ich zwingend selbst prüfen oder ersetzen muss.
