@@ -27,7 +27,7 @@ function Navbar() {
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Logo" className="h-9 w-9 object-contain" />
           <span className="font-semibold text-white text-sm tracking-wide">
-            Alex KI-Automatisierung
+            RevenueFlow Systems
           </span>
         </div>
 
@@ -761,7 +761,7 @@ function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img src="/logo.png" alt="Logo" className="h-7 w-7 object-contain" />
-          <span className="text-sm text-white/40">Alex KI-Automatisierung</span>
+          <span className="text-sm text-white/40">RevenueFlow Systems</span>
         </div>
         <p className="text-xs text-white/30">
           © {new Date().getFullYear()} — Alle Rechte vorbehalten
