@@ -400,7 +400,7 @@ function ProcessSection() {
   }, []);
 
   return (
-    <section id="prozess" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden">
+    <section id="prozess" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: "hsl(0 0% 4%)" }}>
       <SectionCorners />
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-20 md:mb-28">
