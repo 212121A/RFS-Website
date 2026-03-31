@@ -74,7 +74,7 @@ function Navbar() {
     >
       <div className="w-full px-4 py-5 flex items-center justify-between">
         <div className="flex items-center gap-0">
-          <img src="/logo.png" alt="Logo" className="h-12 w-12 object-contain" />
+          <img src="/logo.png" alt="Logo" className="h-9 w-9 object-contain" />
           <span className="font-semibold text-white text-base tracking-wide -ml-1.5">
             RevenueFlow Systems
           </span>
