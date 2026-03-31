@@ -200,7 +200,7 @@ function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-20 md:pt-24"
+      className="relative min-h-screen w-full flex items-start md:items-center justify-center px-5 md:px-16 pt-20 md:pt-24"
       style={snapPad > 0 ? { paddingBottom: snapPad } : undefined}
     >
 
@@ -253,7 +253,7 @@ function HeroSection() {
           <span style={{ color: ACCENT }}>Kundenanfragen.</span>
         </h1>
 
-        <p className="text-sm sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-6 sm:mb-10 leading-relaxed px-2">
+        <p className="text-sm sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-9 sm:mb-10 leading-relaxed px-2">
           Ich automatisiere deine Anrufe und Nachrichten, damit jede Anfrage sofort
           beantwortet und in einen Termin verwandelt wird.
         </p>
@@ -278,7 +278,7 @@ function HeroSection() {
         </div>
 
         <div
-          className="inline-flex items-center gap-2 sm:gap-3 mt-5 sm:mt-8 px-4 sm:px-6 py-3 sm:py-4 rounded-xl whitespace-nowrap"
+          className="inline-flex items-center gap-2 sm:gap-3 mt-9 sm:mt-8 px-4 sm:px-6 py-3 sm:py-4 rounded-xl whitespace-nowrap"
           style={{
             background: "rgba(193,255,114,0.07)",
             border: "1px solid rgba(193,255,114,0.25)",
