@@ -72,8 +72,8 @@ function Navbar() {
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
       }}
     >
-      <div className="w-full px-8 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="w-full px-4 py-5 flex items-center justify-between">
+        <div className="flex items-center gap-1">
           <img src="/logo.png" alt="Logo" className="h-20 w-20 object-contain" />
           <span className="font-semibold text-white text-base tracking-wide">
             RevenueFlow Systems
