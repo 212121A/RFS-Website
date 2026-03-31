@@ -200,7 +200,7 @@ function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-24"
+      className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-20 md:pt-24"
       style={snapPad > 0 ? { paddingBottom: snapPad } : undefined}
     >
 
@@ -236,7 +236,7 @@ function HeroSection() {
 
       <div className="relative w-full max-w-6xl mx-auto text-center">
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8 border"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-5 sm:mb-8 border"
           style={{
             color: ACCENT,
             borderColor: "rgba(193,255,114,0.3)",
@@ -247,21 +247,21 @@ function HeroSection() {
           <span>Kostenlose Erstberatung — 15 Min., keine Verpflichtung</span>
         </div>
 
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-6 leading-[1.05] tracking-tight">
+        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 sm:mb-6 leading-[1.05] tracking-tight">
           Nie wieder verpasste
           <br />
           <span style={{ color: ACCENT }}>Kundenanfragen.</span>
         </h1>
 
-        <p className="text-lg sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-10 leading-relaxed px-2">
+        <p className="text-sm sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-6 sm:mb-10 leading-relaxed px-2">
           Ich automatisiere deine Anrufe und Nachrichten, damit jede Anfrage sofort
           beantwortet und in einen Termin verwandelt wird.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <a
             href="#kontakt"
-            className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-xl font-semibold text-lg transition-all hover:opacity-90 active:scale-95"
+            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg transition-all hover:opacity-90 active:scale-95"
             style={{ background: ACCENT, color: "#0a0a0a" }}
           >
             Jetzt 15 Min. Erstgespräch buchen
@@ -271,39 +271,39 @@ function HeroSection() {
           </a>
           <a
             href="#prozess"
-            className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-xl font-semibold text-lg transition-all border border-white/10 text-white hover:border-white/20 hover:bg-white/5"
+            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg transition-all border border-white/10 text-white hover:border-white/20 hover:bg-white/5"
           >
             Prozess ansehen
           </a>
         </div>
 
         <div
-          className="inline-flex items-center gap-3 mt-8 px-6 py-4 rounded-xl"
+          className="inline-flex items-center gap-2 sm:gap-3 mt-5 sm:mt-8 px-4 sm:px-6 py-3 sm:py-4 rounded-xl whitespace-nowrap"
           style={{
             background: "rgba(193,255,114,0.07)",
             border: "1px solid rgba(193,255,114,0.25)",
           }}
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2" className="sm:w-[22px] sm:h-[22px] flex-shrink-0">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="text-base font-semibold" style={{ color: ACCENT }}>
+          <span className="text-sm sm:text-base font-semibold" style={{ color: ACCENT }}>
             100% DSGVO-konform
           </span>
-          <span className="text-base text-white/40">— Deine Daten sind bei uns sicher</span>
+          <span className="hidden sm:inline text-sm sm:text-base text-white/40">— Deine Daten sind bei uns sicher</span>
         </div>
 
-        <div className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-14">
+        <div className="mt-6 sm:mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-14">
           {[
             { number: "100%", label: "Individuelle Lösungen" },
             { number: "15 Min.", label: "Erstberatung" },
             { number: "∞", label: "Skalierbarkeit" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <div className="text-4xl sm:text-6xl font-bold" style={{ color: ACCENT }}>
+              <div className="text-3xl sm:text-6xl font-bold" style={{ color: ACCENT }}>
                 {stat.number}
               </div>
-              <div className="text-base sm:text-lg text-white/40 mt-1">{stat.label}</div>
+              <div className="text-xs sm:text-lg text-white/40 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
