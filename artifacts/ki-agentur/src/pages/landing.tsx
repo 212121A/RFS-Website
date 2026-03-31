@@ -271,7 +271,8 @@ function HeroSection() {
           </a>
           <a
             href="#prozess"
-            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg transition-all border border-white/10 text-white hover:border-white/20 hover:bg-white/5"
+            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg transition-all hover:opacity-90 active:scale-95"
+            style={{ background: "#ffffff", color: "#0a0a0a" }}
           >
             Prozess ansehen
           </a>
