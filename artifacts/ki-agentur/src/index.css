@@ -229,6 +229,43 @@
   text-shadow: 0 0 40px rgba(193, 255, 114, 0.4);
 }
 
+/* ============ Animations ============ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(193, 255, 114, 0.3); }
+  50%       { box-shadow: 0 0 0 12px rgba(193, 255, 114, 0); }
+}
+
+.anim-fade-up {
+  opacity: 0;
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.float-orb {
+  animation: floatY 8s ease-in-out infinite;
+}
+
+.pulse-glow-btn {
+  animation: pulseGlow 2.8s ease-in-out infinite;
+}
+
+.reveal-card {
+  opacity: 0;
+}
+
+.reveal-card.is-visible {
+  animation: fadeInUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s) both;
+}
+
 /* Smooth scrolling */
 body {
   overflow-x: hidden;

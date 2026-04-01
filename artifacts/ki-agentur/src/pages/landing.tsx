@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useConsent } from "@/context/ConsentContext";
 
 const ACCENT = "#c1ff72";
@@ -225,40 +225,40 @@ function HeroSection() {
         <div style={{ position: "absolute", bottom: 0, right: 0, width: 2, height: 180, background: `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
       </div>
 
-      {/* Glow orb */}
-      <div
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(193,255,114,0.07) 0%, transparent 70%)",
-        }}
-      />
+      {/* Glow orb — floats independently of centering transforms */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <div
+          className="float-orb w-[800px] h-[800px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(193,255,114,0.07) 0%, transparent 70%)" }}
+        />
+      </div>
 
       <div className="relative w-full max-w-6xl mx-auto text-center">
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-5 sm:mb-8 border"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-medium mb-5 sm:mb-8 border anim-fade-up"
           style={{
             color: ACCENT,
             borderColor: "rgba(193,255,114,0.3)",
             background: "rgba(193,255,114,0.05)",
+            animationDelay: "0.1s",
           }}
         >
           <span className="w-2 h-2 rounded-full inline-block flex-shrink-0" style={{ background: ACCENT }} />
           <span>Kostenlose Erstberatung — 15 Min., keine Verpflichtung</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 sm:mb-6 leading-[1.05] tracking-tight">
+        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 sm:mb-6 leading-[1.05] tracking-tight anim-fade-up" style={{ animationDelay: "0.25s" }}>
           Nie wieder verpasste
           <br />
           <span style={{ color: ACCENT }}>Kundenanfragen.</span>
         </h1>
 
-        <p className="text-sm sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-6 sm:mb-10 leading-relaxed px-2">
+        <p className="text-sm sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-6 sm:mb-10 leading-relaxed px-2 anim-fade-up" style={{ animationDelay: "0.4s" }}>
           Ich automatisiere deine Anrufe und Nachrichten, damit jede Anfrage sofort
           beantwortet und in einen Termin verwandelt wird.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center anim-fade-up" style={{ animationDelay: "0.55s" }}>
           <a
             href="#kontakt"
             className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg transition-all hover:opacity-90 active:scale-95"
@@ -279,10 +279,11 @@ function HeroSection() {
         </div>
 
         <div
-          className="inline-flex items-center gap-2 sm:gap-3 mt-5 sm:mt-8 px-4 sm:px-6 py-3 sm:py-4 rounded-xl whitespace-nowrap"
+          className="inline-flex items-center gap-2 sm:gap-3 mt-5 sm:mt-8 px-4 sm:px-6 py-3 sm:py-4 rounded-xl whitespace-nowrap anim-fade-up"
           style={{
             background: "rgba(193,255,114,0.07)",
             border: "1px solid rgba(193,255,114,0.25)",
+            animationDelay: "0.65s",
           }}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2" className="sm:w-[22px] sm:h-[22px] flex-shrink-0">
@@ -294,7 +295,7 @@ function HeroSection() {
           <span className="hidden sm:inline text-sm sm:text-base text-white/40">— Deine Daten sind bei uns sicher</span>
         </div>
 
-        <div className="mt-6 sm:mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-14">
+        <div className="mt-6 sm:mt-10 grid grid-cols-3 gap-4 sm:flex sm:items-center sm:justify-center sm:gap-14 anim-fade-up" style={{ animationDelay: "0.75s" }}>
           {[
             { number: "100%", label: "Individuelle Lösungen" },
             { number: "15 Min.", label: "Erstberatung" },
@@ -599,6 +600,32 @@ const comingSoonServices = [
 ];
 
 function ServicesSection() {
+  const [visibleSvc, setVisibleSvc] = useState<Set<number>>(new Set());
+  const [visibleCs, setVisibleCs] = useState<Set<number>>(new Set());
+  const svcRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const csRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    svcRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) setVisibleSvc(prev => new Set([...prev, i]));
+      }, { threshold: 0.1 });
+      obs.observe(el);
+      observers.push(obs);
+    });
+    csRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) setVisibleCs(prev => new Set([...prev, i]));
+      }, { threshold: 0.1 });
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
   return (
     <section id="leistungen" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <SectionCorners />
@@ -625,14 +652,16 @@ function ServicesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
+          {services.map((service, i) => (
             <div
+              ref={(el) => { svcRefs.current[i] = el; }}
               key={service.title}
-              className="group p-8 rounded-2xl transition-all duration-300 hover:border-white/15 cursor-default"
+              className={`group p-8 rounded-2xl transition-all duration-300 cursor-default reveal-card${visibleSvc.has(i) ? ' is-visible' : ''}`}
               style={{
                 background: "hsl(0 0% 7%)",
                 border: "1px solid rgba(255,255,255,0.06)",
-              }}
+                '--reveal-delay': `${i * 0.08}s`,
+              } as React.CSSProperties}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.background = "hsl(0 0% 9%)";
                 (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(193,255,114,0.2)";
@@ -667,14 +696,17 @@ function ServicesSection() {
             </div>
           ))}
 
-          {comingSoonServices.map((service) => (
+          {comingSoonServices.map((service, i) => (
             <div
+              ref={(el) => { csRefs.current[i] = el; }}
               key={service.title}
               className="p-8 rounded-2xl cursor-default"
               style={{
                 background: "hsl(0 0% 5%)",
                 border: "1px solid rgba(255,255,255,0.04)",
-                opacity: 0.55,
+                opacity: visibleCs.has(i) ? 0.55 : 0,
+                transform: visibleCs.has(i) ? "translateY(0)" : "translateY(20px)",
+                transition: `opacity 0.55s ease ${i * 0.08 + 0.05}s, transform 0.55s ease ${i * 0.08 + 0.05}s`,
               }}
             >
               <div className="text-5xl mb-5 grayscale">{service.icon}</div>
@@ -757,6 +789,22 @@ const testimonials = [
 ];
 
 function TestimonialsSection() {
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    cardRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) setVisibleCards(prev => new Set([...prev, i]));
+      }, { threshold: 0.15 });
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
   return (
     <section
       id="testimonials"
@@ -786,14 +834,18 @@ function TestimonialsSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {testimonials.map((t) => (
+          {testimonials.map((t, i) => (
             <div
+              ref={(el) => { cardRefs.current[i] = el; }}
               key={t.company}
               className="p-8 rounded-2xl flex flex-col gap-5"
               style={{
                 background: "hsl(0 0% 7%)",
                 border: "1px solid rgba(193,255,114,0.25)",
                 boxShadow: "0 0 32px rgba(193,255,114,0.05)",
+                opacity: visibleCards.has(i) ? 1 : 0,
+                transform: visibleCards.has(i) ? "translateY(0)" : "translateY(24px)",
+                transition: `opacity 0.6s ease ${i * 0.15}s, transform 0.6s ease ${i * 0.15}s`,
               }}
             >
               {/* Stars */}
@@ -1122,7 +1174,7 @@ function ContactSection() {
             <button
               type="submit"
               disabled={!form.privacy || submitting}
-              className="w-full py-5 rounded-xl font-semibold text-lg transition-all active:scale-95 mt-1 disabled:opacity-40 disabled:cursor-not-allowed"
+              className={`w-full py-5 rounded-xl font-semibold text-lg transition-all active:scale-95 mt-1 disabled:opacity-40 disabled:cursor-not-allowed${!form.privacy || submitting ? '' : ' pulse-glow-btn'}`}
               style={{ background: ACCENT, color: "#0a0a0a" }}
             >
               {submitting ? "Wird gesendet…" : "Kostenloses Erstgespräch anfragen →"}
