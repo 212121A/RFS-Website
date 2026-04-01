@@ -737,6 +737,110 @@ const faqs = [
   },
 ];
 
+const testimonials = [
+  {
+    company: "Deininger Training",
+    location: "Oberkochen",
+    text: "Durch die Automatisierung von Anfragen und Terminprozessen konnten Abläufe deutlich effizienter gestaltet werden. Kundenanfragen gehen nicht mehr verloren und Termine werden strukturierter organisiert.",
+    initials: "DT",
+    category: "Fitness & Personal Training",
+  },
+  {
+    company: "HelloLaser",
+    location: "Oberkochen",
+    text: "Mit der Einführung automatisierter Prozesse konnten wir unsere Erreichbarkeit verbessern und interne Abläufe vereinfachen. Das Team wird entlastet und kann sich stärker auf Kunden vor Ort konzentrieren.",
+    initials: "HL",
+    category: "Beauty & Laserbehandlungen",
+  },
+];
+
+function TestimonialsSection() {
+  return (
+    <section
+      id="testimonials"
+      className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16"
+      style={{ backgroundColor: "hsl(0 0% 4%)" }}
+    >
+      <SectionCorners />
+      <div className="w-full max-w-5xl mx-auto">
+        <div className="text-center mb-14 md:mb-20">
+          <div
+            className="inline-block text-sm font-medium px-4 py-1.5 rounded-full mb-5"
+            style={{
+              color: ACCENT,
+              background: "rgba(193,255,114,0.08)",
+              border: "1px solid rgba(193,255,114,0.2)",
+            }}
+          >
+            Ergebnisse aus der Praxis
+          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-5 tracking-tight">
+            Was Kunden{" "}
+            <span style={{ color: ACCENT }}>berichten</span>
+          </h2>
+          <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">
+            Reale Ergebnisse aus lokalen Unternehmen — keine Versprechen, nur Praxis.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {testimonials.map((t) => (
+            <div
+              key={t.company}
+              className="p-8 rounded-2xl flex flex-col gap-5"
+              style={{
+                background: "hsl(0 0% 7%)",
+                border: "1px solid rgba(193,255,114,0.25)",
+                boxShadow: "0 0 32px rgba(193,255,114,0.05)",
+              }}
+            >
+              {/* Stars */}
+              <div className="flex items-center gap-1">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={ACCENT}>
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                ))}
+              </div>
+
+              {/* Quote */}
+              <p className="text-white/70 text-base leading-relaxed flex-1">
+                „{t.text}"
+              </p>
+
+              {/* Footer */}
+              <div className="flex items-center gap-4 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                {/* Avatar */}
+                <div
+                  className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
+                  style={{
+                    background: "rgba(193,255,114,0.12)",
+                    border: "1px solid rgba(193,255,114,0.3)",
+                    color: ACCENT,
+                  }}
+                >
+                  {t.initials}
+                </div>
+                <div>
+                  <div className="font-semibold text-white text-sm">{t.company}</div>
+                  <div className="text-white/40 text-xs mt-0.5">{t.category} · {t.location}</div>
+                </div>
+                {/* Verified check */}
+                <div className="ml-auto flex items-center gap-1.5">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                  <span className="text-xs font-medium" style={{ color: ACCENT }}>Verifiziert</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -1102,6 +1206,7 @@ export default function LandingPage() {
         <HeroSection />
         <ProcessSection />
         <ServicesSection />
+        <TestimonialsSection />
         <FAQSection />
         <ContactSection />
       </main>
