@@ -741,7 +741,7 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
+    <section id="faq" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16" style={{ backgroundColor: "hsl(0 0% 4%)" }}>
       <SectionCorners />
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-14 md:mb-18">
