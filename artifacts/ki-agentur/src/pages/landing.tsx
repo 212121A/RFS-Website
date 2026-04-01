@@ -742,14 +742,16 @@ const testimonials = [
     company: "Deininger Training",
     location: "Oberkochen",
     text: "Durch die Automatisierung von Anfragen und Terminprozessen konnten Abläufe deutlich effizienter gestaltet werden. Kundenanfragen gehen nicht mehr verloren und Termine werden strukturierter organisiert.",
-    initials: "DT",
+    logo: "/logo-deininger.jpg",
+    logoStyle: {} as React.CSSProperties,
     category: "Fitness & Personal Training",
   },
   {
     company: "HelloLaser",
     location: "Oberkochen",
     text: "Mit der Einführung automatisierter Prozesse konnten wir unsere Erreichbarkeit verbessern und interne Abläufe vereinfachen. Das Team wird entlastet und kann sich stärker auf Kunden vor Ort konzentrieren.",
-    initials: "HL",
+    logo: "/logo-hellolaser.png",
+    logoStyle: { filter: "brightness(0) invert(1)" } as React.CSSProperties,
     category: "Beauty & Laserbehandlungen",
   },
 ];
@@ -810,16 +812,17 @@ function TestimonialsSection() {
 
               {/* Footer */}
               <div className="flex items-center gap-4 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                {/* Avatar */}
+                {/* Logo */}
                 <div
-                  className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-                  style={{
-                    background: "rgba(193,255,114,0.12)",
-                    border: "1px solid rgba(193,255,114,0.3)",
-                    color: ACCENT,
-                  }}
+                  className="h-10 w-20 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center"
+                  style={{ background: "rgba(255,255,255,0.06)" }}
                 >
-                  {t.initials}
+                  <img
+                    src={t.logo}
+                    alt={t.company}
+                    className="h-full w-full object-contain p-1"
+                    style={t.logoStyle}
+                  />
                 </div>
                 <div>
                   <div className="font-semibold text-white text-sm">{t.company}</div>
