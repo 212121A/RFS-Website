@@ -9,6 +9,7 @@ import DatenschutzPage from "@/pages/datenschutz";
 import { ConsentProvider } from "@/context/ConsentContext";
 import { CookieBanner } from "@/components/CookieBanner";
 import { CookieSettingsModal } from "@/components/CookieSettingsModal";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 
 const queryClient = new QueryClient();
 
@@ -28,12 +29,17 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ConsentProvider>
         <TooltipProvider>
-          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-            <Router />
-          </WouterRouter>
-          <Toaster />
-          <CookieBanner />
-          <CookieSettingsModal />
+          <div className="fixed inset-0 z-0">
+            <BackgroundPaths />
+          </div>
+          <div className="relative z-10">
+            <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+              <Router />
+            </WouterRouter>
+            <Toaster />
+            <CookieBanner />
+            <CookieSettingsModal />
+          </div>
         </TooltipProvider>
       </ConsentProvider>
     </QueryClientProvider>

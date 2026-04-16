@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useConsent } from "@/context/ConsentContext";
+import { TestimonialsSparklesDemo } from "@/components/ui/demo";
+import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import { InteractiveImageAccordion } from "@/components/ui/interactive-image-accordion";
+import CornerFrameScrambleText from "@/components/ui/corner-frame-scramble-text";
+import { LimelightNav } from "@/components/ui/limelight-nav";
+import { ScrollSection } from "@/components/ui/hero-scroll-animation";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { AnimatedLineChart } from "@/components/ui/animated-line-chart";
 
 const ACCENT = "#c1ff72";
 
@@ -51,13 +59,43 @@ function SectionCorners() {
   );
 }
 
+const NAV_SECTIONS = [
+  { id: "ig", selector: null },
+  { id: "home", selector: null },
+  { id: "prozess", selector: "#prozess" },
+  { id: "leistungen", selector: "#leistungen" },
+  { id: "faq", selector: "#faq" },
+  { id: "kontakt", selector: "#kontakt" },
+];
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeNavIndex, setActiveNavIndex] = useState(1);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
+    const handler = () => {
+      setScrolled(window.scrollY > 20);
+
+      const threshold = window.innerHeight * 0.35;
+      let found = 1;
+      for (let i = NAV_SECTIONS.length - 1; i >= 0; i--) {
+        const sel = NAV_SECTIONS[i].selector;
+        if (!sel) continue;
+        const el = document.querySelector(sel);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= threshold) {
+            found = i;
+            break;
+          }
+        }
+      }
+      if (window.scrollY < 100) found = 1;
+      setActiveNavIndex(found);
+    };
+    window.addEventListener("scroll", handler, { passive: true });
+    handler();
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
@@ -75,55 +113,38 @@ function Navbar() {
       <div className="w-full px-4 py-5 flex items-center justify-between">
         <div className="flex items-center gap-0">
           <img src="/logo.png" alt="Logo" className="h-9 w-9 object-contain" />
-          <span className="font-semibold text-white text-base tracking-wide ml-1">
-            RevenueFlow Systems
+          <span className="font-bold italic text-base tracking-wide ml-1" style={{ color: ACCENT }}>
+            revenueflowsystems
           </span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {[
-            { label: "Prozess", href: "#prozess" },
-            { label: "Leistungen", href: "#leistungen" },
-            { label: "FAQ", href: "#faq" },
-          ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-base text-white/60 hover:text-white transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-          <a
-            href="https://www.instagram.com/revenueflow.systems/?hl=de"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="transition-colors"
-            style={{ color: "rgba(255,255,255,0.45)" }}
-            onMouseEnter={e => (e.currentTarget.style.color = ACCENT)}
-            onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-            </svg>
-          </a>
-          <a
-            href="#kontakt"
-            className="text-base font-semibold px-5 py-2.5 rounded-lg transition-all"
-            style={{
-              background: ACCENT,
-              color: "#0a0a0a",
-            }}
-          >
-            Kostenlos beraten lassen
-          </a>
-        </nav>
+        <div className="hidden md:block">
+          <LimelightNav
+            items={[
+              {
+                id: "ig",
+                icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                  </svg>
+                ),
+                href: "https://www.instagram.com/revenueflowsystems.de/",
+              },
+              { id: "home", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>, label: "Home", onClick: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
+              { id: "prozess", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>, label: "Prozess", href: "#prozess" },
+              { id: "leistungen", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>, label: "Leistungen", href: "#leistungen" },
+              { id: "faq", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>, label: "FAQ", href: "#faq" },
+              { id: "kontakt", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>, label: "Kostenlos beraten lassen", href: "#kontakt" },
+            ]}
+            activeIndex={activeNavIndex}
+          />
+        </div>
 
-        <button
-          className="md:hidden text-white"
+        <LiquidButton
+          size="icon"
+          className="md:hidden text-white/90 !h-10 !w-10 !p-0"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
         >
@@ -136,7 +157,7 @@ function Navbar() {
               </>
             )}
           </svg>
-        </button>
+        </LiquidButton>
       </div>
 
       {menuOpen && (
@@ -158,75 +179,27 @@ function Navbar() {
               {item.label}
             </a>
           ))}
-          <a
-            href="#kontakt"
-            className="text-base font-semibold px-4 py-3 rounded-lg text-center mt-2"
-            style={{ background: ACCENT, color: "#0a0a0a" }}
-            onClick={() => setMenuOpen(false)}
+          <LiquidButton
+            className="text-base font-semibold px-4 py-3 rounded-lg text-center mt-2 text-white/90"
+            onClick={() => {
+              setMenuOpen(false);
+              window.location.hash = "kontakt";
+            }}
           >
             Kostenlos beraten lassen
-          </a>
+          </LiquidButton>
         </div>
       )}
     </header>
   );
 }
 
-const GRID = 60;
-
 function HeroSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const appliedRef = useRef(0);
-  const [snapPad, setSnapPad] = useState(0);
-
-  useEffect(() => {
-    function snap() {
-      const el = sectionRef.current;
-      if (!el) return;
-      // Subtract padding we already applied to get the natural height
-      const naturalH = el.offsetHeight - appliedRef.current;
-      const rem = naturalH % GRID;
-      const needed = rem === 0 ? 0 : GRID - rem;
-      if (needed !== appliedRef.current) {
-        appliedRef.current = needed;
-        setSnapPad(needed);
-      }
-    }
-    snap();
-    window.addEventListener("resize", snap);
-    return () => window.removeEventListener("resize", snap);
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen w-full flex items-center justify-center px-5 md:px-16 pt-20 md:pt-24"
-      style={snapPad > 0 ? { paddingBottom: snapPad } : undefined}
-    >
+    <section className="relative w-full px-5 md:px-16 pt-28 md:pt-36">
+      <SectionCorners />
 
-      {/* Top-left corner */}
-      <div style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}>
-        <div style={{ position: "absolute", top: 0, left: 0, width: "38vw", height: 2, background: `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-        <div style={{ position: "absolute", top: 0, left: 0, width: 2, height: 180, background: `linear-gradient(to bottom, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-      </div>
-      {/* Top-right corner */}
-      <div style={{ position: "absolute", top: 0, right: 0, pointerEvents: "none" }}>
-        <div style={{ position: "absolute", top: 0, right: 0, width: "38vw", height: 2, background: `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-        <div style={{ position: "absolute", top: 0, right: 0, width: 2, height: 180, background: `linear-gradient(to bottom, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-      </div>
-      {/* Bottom-left corner — at section bottom (hero/process boundary) */}
-      <div style={{ position: "absolute", bottom: 0, left: 0, pointerEvents: "none" }}>
-        <div style={{ position: "absolute", bottom: 0, left: 0, width: "38vw", height: 2, background: `linear-gradient(to right, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-        <div style={{ position: "absolute", bottom: 0, left: 0, width: 2, height: 180, background: `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-      </div>
-      {/* Bottom-right corner — at section bottom (hero/process boundary) */}
-      <div style={{ position: "absolute", bottom: 0, right: 0, pointerEvents: "none" }}>
-        <div style={{ position: "absolute", bottom: 0, right: 0, width: "38vw", height: 2, background: `linear-gradient(to left, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-        <div style={{ position: "absolute", bottom: 0, right: 0, width: 2, height: 180, background: `linear-gradient(to top, ${ACCENT} 0%, rgba(193,255,114,0.3) 60%, transparent 100%)`, opacity: 0.7 }} />
-      </div>
-
-      {/* Glow orb — floats independently of centering transforms */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
         <div
           className="float-orb w-[800px] h-[800px] rounded-full"
           style={{ background: "radial-gradient(circle, rgba(193,255,114,0.07) 0%, transparent 70%)" }}
@@ -247,35 +220,71 @@ function HeroSection() {
           <span>Kostenlose Erstberatung — 15 Min., keine Verpflichtung</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 sm:mb-6 leading-[1.05] tracking-tight anim-fade-up" style={{ animationDelay: "0.25s" }}>
-          Nie wieder verpasste
-          <br />
-          <span style={{ color: ACCENT }}>Kundenanfragen.</span>
-        </h1>
+        <div
+          className="mb-4 sm:mb-6 anim-fade-up flex flex-col items-center"
+          style={{ animationDelay: "0.25s" }}
+        >
+          <CornerFrameScrambleText
+            value={"Nie wieder\nverpasste"}
+            as="h1"
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-[1.05] tracking-tight px-0 py-0"
+          />
+          <CornerFrameScrambleText
+            value={"Kundenanfragen."}
+            as="h1"
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold leading-[1.05] tracking-tight text-[#c1ff72] px-0 py-0 -mt-2 sm:-mt-3"
+          />
+        </div>
 
-        <p className="text-sm sm:text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-6 sm:mb-10 leading-relaxed px-2 anim-fade-up" style={{ animationDelay: "0.4s" }}>
-          Ich automatisiere deine Anrufe und Nachrichten, damit jede Anfrage sofort
-          beantwortet und in einen Termin verwandelt wird.
-        </p>
+        <div className="w-full max-w-5xl mx-auto mb-6 sm:mb-10 anim-fade-up" style={{ animationDelay: "0.4s" }}>
+          <AnimatedLineChart width={1000} height={420} />
+        </div>
+      </div>
 
+      <ContainerScroll
+        titleComponent={
+          <p className="text-base sm:text-lg text-white/40 mb-2 anim-fade-up" style={{ animationDelay: "0.5s" }}>
+            Schluss mit Chaos. Schluss mit manuell. <span style={{ color: ACCENT }}>Schluss mit zu wenig Zeit.</span>
+          </p>
+        }
+      >
+        <video
+          src="/hero-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="mx-auto rounded-2xl object-cover h-full w-full"
+        />
+      </ContainerScroll>
+
+      <div className="relative w-full max-w-6xl mx-auto text-center mt-6 sm:mt-10 pb-20 sm:pb-28">
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center anim-fade-up" style={{ animationDelay: "0.55s" }}>
-          <a
-            href="#kontakt"
-            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg transition-all hover:opacity-90 active:scale-95"
-            style={{ background: ACCENT, color: "#0a0a0a" }}
+          <LiquidButton
+            size="xl"
+            className="inline-flex flex-row items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg text-white whitespace-nowrap"
+            onClick={() => {
+              window.location.hash = "kontakt";
+            }}
           >
             Jetzt 15 Min. Erstgespräch buchen
-            <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="none" className="shrink-0 size-5">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </a>
-          <a
-            href="#prozess"
-            className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg transition-all hover:opacity-90 active:scale-95"
-            style={{ background: "#ffffff", color: "#0a0a0a" }}
+          </LiquidButton>
+          <LiquidButton
+            size="xl"
+            variant="outline"
+            className="inline-flex flex-row items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-5 rounded-xl font-semibold text-base sm:text-lg text-white whitespace-nowrap"
+            onClick={() => {
+              window.location.hash = "prozess";
+            }}
           >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 size-6">
+              <path d="M6 4l15 8-15 8V4z" />
+            </svg>
             Prozess ansehen
-          </a>
+          </LiquidButton>
         </div>
 
         <div
@@ -310,7 +319,6 @@ function HeroSection() {
           ))}
         </div>
       </div>
-
     </section>
   );
 }
@@ -401,7 +409,7 @@ function ProcessSection() {
   }, []);
 
   return (
-    <section id="prozess" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden" style={{ backgroundColor: "hsl(0 0% 4%)" }}>
+    <section id="prozess" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16 overflow-hidden">
       <SectionCorners />
       <div className="w-full max-w-5xl mx-auto">
         <div className="text-center mb-20 md:mb-28">
@@ -521,111 +529,7 @@ function ProcessSection() {
   );
 }
 
-const services = [
-  {
-    title: "Automatische Terminannahme",
-    description:
-      "Jede Anfrage wird sofort beantwortet und direkt in einen Termin umgewandelt – ohne dass du selbst reagieren musst.",
-    tags: ["24/7", "Terminbuchung", "Automatisch"],
-    icon: "🤖",
-  },
-  {
-    title: "Telefon- & WhatsApp-Agent",
-    description:
-      "Ein KI-Assistent nimmt Anrufe und Nachrichten entgegen, beantwortet Fragen und bucht Termine automatisch.",
-    tags: ["Telefon", "WhatsApp", "KI-Agent"],
-    icon: "⚡",
-  },
-  {
-    title: "Weniger No-Shows",
-    description:
-      "Automatische Bestätigungen und Erinnerungen sorgen dafür, dass Termine zuverlässig eingehalten werden.",
-    tags: ["Erinnerungen", "SMS", "E-Mail"],
-    icon: "🎯",
-  },
-  {
-    title: "Entlastung im Alltag",
-    description:
-      "Kein ständiges Telefonieren oder Antworten mehr – du kannst dich wieder auf deine Arbeit konzentrieren.",
-    tags: ["Zeitersparnis", "Fokus", "Effizienz"],
-    icon: "💬",
-  },
-  {
-    title: "Mehr Kunden ohne Mehraufwand",
-    description:
-      "Du verlierst keine Anfragen mehr und gewinnst mehr zahlende Kunden – ohne mehr Zeit zu investieren.",
-    tags: ["Wachstum", "Leads", "Conversion"],
-    icon: "📊",
-  },
-  {
-    title: "Ein System für alles",
-    description:
-      "Alle Anfragen laufen zentral zusammen und werden automatisch verarbeitet.",
-    tags: ["Zentralisiert", "Automatisiert", "Übersicht"],
-    icon: "✍️",
-  },
-];
-
-const comingSoonServices = [
-  {
-    title: "Follow-Up Automatisierung",
-    description: "Automatisches Nachfassen bei Interessenten, die nicht direkt buchen.",
-    icon: "🔁",
-  },
-  {
-    title: "No-Show Reduzierung",
-    description: "Automatische Erinnerungen und Bestätigungen für weniger Termin-Ausfälle.",
-    icon: "📅",
-  },
-  {
-    title: "Bewertungen automatisieren",
-    description: "Hole dir automatisch mehr 5★ Bewertungen nach jedem Termin.",
-    icon: "⭐",
-  },
-  {
-    title: "Kunden-Reaktivierung",
-    description: "Gewinne alte Kunden zurück durch gezielte automatische Nachrichten.",
-    icon: "🔄",
-  },
-  {
-    title: "WhatsApp Funnel",
-    description: "Verwandle Website- und Instagram-Besucher automatisch in Anfragen.",
-    icon: "📲",
-  },
-  {
-    title: "Mitarbeiterverwaltungs-App",
-    description: "Eigene App für dein Team: Zeiterfassung, interner Chat, Urlaubsplanung und mehr – alles an einem Ort.",
-    icon: "🧑‍💼",
-  },
-];
-
 function ServicesSection() {
-  const [visibleSvc, setVisibleSvc] = useState<Set<number>>(new Set());
-  const [visibleCs, setVisibleCs] = useState<Set<number>>(new Set());
-  const svcRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const csRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    svcRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const obs = new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) setVisibleSvc(prev => new Set([...prev, i]));
-      }, { threshold: 0.1 });
-      obs.observe(el);
-      observers.push(obs);
-    });
-    csRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const obs = new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) setVisibleCs(prev => new Set([...prev, i]));
-      }, { threshold: 0.1 });
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach(o => o.disconnect());
-  }, []);
-
   return (
     <section id="leistungen" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <SectionCorners />
@@ -645,92 +549,11 @@ function ServicesSection() {
             Was ich für dich{" "}
             <span style={{ color: ACCENT }}>automatisiere</span>
           </h2>
-          <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">
-            Jede Lösung wird individuell auf dein Business zugeschnitten.
-            Keine vorgefertigten Templates.
+          <p className="text-white/50 text-lg md:text-xl max-w-3xl mx-auto">
+            Du kaufst einmal ein System, das deinen Betrieb automatisiert — statt jeden Monat für teure Software, Hardware und Extra-Personal zu zahlen.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, i) => (
-            <div
-              ref={(el) => { svcRefs.current[i] = el; }}
-              key={service.title}
-              className={`group p-8 rounded-2xl transition-all duration-300 cursor-default reveal-card${visibleSvc.has(i) ? ' is-visible' : ''}`}
-              style={{
-                background: "hsl(0 0% 7%)",
-                border: "1px solid rgba(255,255,255,0.06)",
-                '--reveal-delay': `${i * 0.08}s`,
-              } as React.CSSProperties}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = "hsl(0 0% 9%)";
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(193,255,114,0.2)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = "hsl(0 0% 7%)";
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)";
-              }}
-            >
-              <div className="text-5xl mb-5">{service.icon}</div>
-              <h3 className="text-xl font-semibold text-white mb-3">
-                {service.title}
-              </h3>
-              <p className="text-white/50 text-base leading-relaxed mb-5">
-                {service.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {service.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-sm px-3 py-1 rounded-md"
-                    style={{
-                      color: "rgba(193,255,114,0.7)",
-                      background: "rgba(193,255,114,0.06)",
-                      border: "1px solid rgba(193,255,114,0.1)",
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          {comingSoonServices.map((service, i) => (
-            <div
-              ref={(el) => { csRefs.current[i] = el; }}
-              key={service.title}
-              className="p-8 rounded-2xl cursor-default"
-              style={{
-                background: "hsl(0 0% 5%)",
-                border: "1px solid rgba(255,255,255,0.04)",
-                opacity: visibleCs.has(i) ? 0.55 : 0,
-                transform: visibleCs.has(i) ? "translateY(0)" : "translateY(20px)",
-                transition: `opacity 0.55s ease ${i * 0.08 + 0.05}s, transform 0.55s ease ${i * 0.08 + 0.05}s`,
-              }}
-            >
-              <div className="text-5xl mb-5 grayscale">{service.icon}</div>
-              <div className="flex items-start justify-between gap-2 mb-3">
-                <h3 className="text-xl font-semibold text-white/70">
-                  {service.title}
-                </h3>
-                <span
-                  className="flex-shrink-0 text-sm font-medium px-2.5 py-0.5 rounded-md mt-0.5"
-                  style={{
-                    color: "rgba(255,255,255,0.35)",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                  }}
-                >
-                  Coming Soon
-                </span>
-              </div>
-              <p className="text-white/35 text-base leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
-        </div>
+        <InteractiveImageAccordion />
       </div>
     </section>
   );
@@ -789,27 +612,10 @@ const testimonials = [
 ];
 
 function TestimonialsSection() {
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    cardRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const obs = new IntersectionObserver(([e]) => {
-        if (e.isIntersecting) setVisibleCards(prev => new Set([...prev, i]));
-      }, { threshold: 0.15 });
-      obs.observe(el);
-      observers.push(obs);
-    });
-    return () => observers.forEach(o => o.disconnect());
-  }, []);
-
   return (
     <section
       id="testimonials"
       className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16"
-      style={{ backgroundColor: "hsl(0 0% 4%)" }}
     >
       <SectionCorners />
       <div className="w-full max-w-5xl mx-auto">
@@ -833,63 +639,8 @@ function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {testimonials.map((t, i) => (
-            <div
-              ref={(el) => { cardRefs.current[i] = el; }}
-              key={t.company}
-              className="p-8 rounded-2xl flex flex-col gap-5"
-              style={{
-                background: "hsl(0 0% 7%)",
-                border: "1px solid rgba(193,255,114,0.25)",
-                boxShadow: "0 0 32px rgba(193,255,114,0.05)",
-                opacity: visibleCards.has(i) ? 1 : 0,
-                transform: visibleCards.has(i) ? "translateY(0)" : "translateY(24px)",
-                transition: `opacity 0.6s ease ${i * 0.15}s, transform 0.6s ease ${i * 0.15}s`,
-              }}
-            >
-              {/* Stars */}
-              <div className="flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={ACCENT}>
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                  </svg>
-                ))}
-              </div>
-
-              {/* Quote */}
-              <p className="text-white/70 text-base leading-relaxed flex-1">
-                „{t.text}"
-              </p>
-
-              {/* Footer */}
-              <div className="flex items-center gap-4 pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                {/* Logo */}
-                <div
-                  className="h-10 w-20 flex-shrink-0 rounded-lg overflow-hidden flex items-center justify-center"
-                  style={{ background: "rgba(255,255,255,0.06)" }}
-                >
-                  <img
-                    src={t.logo}
-                    alt={t.company}
-                    className="h-full w-full object-contain p-1"
-                    style={t.logoStyle}
-                  />
-                </div>
-                <div>
-                  <div className="font-semibold text-white text-sm">{t.company}</div>
-                  <div className="text-white/40 text-xs mt-0.5">{t.category} · {t.location}</div>
-                </div>
-                {/* Verified check */}
-                <div className="ml-auto flex items-center gap-1.5">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={ACCENT} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                  <span className="text-xs font-medium" style={{ color: ACCENT }}>Verifiziert</span>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="mb-10 md:mb-14">
+          <TestimonialsSparklesDemo testimonials={testimonials} />
         </div>
       </div>
     </section>
@@ -897,7 +648,7 @@ function TestimonialsSection() {
 }
 
 function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
     <section id="faq" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
@@ -919,44 +670,65 @@ function FAQSection() {
           </h2>
         </div>
 
-        <div className="flex flex-col gap-4">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="rounded-xl overflow-hidden transition-all duration-200"
-              style={{
-                background: openIndex === i ? "hsl(0 0% 9%)" : "hsl(0 0% 7%)",
-                border: openIndex === i ? "1px solid rgba(193,255,114,0.2)" : "1px solid rgba(255,255,255,0.07)",
-              }}
-            >
-              <button
-                className="w-full text-left p-6 flex items-center justify-between gap-4"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {faqs.map((faq, i) => {
+            const isActive = activeIndex === i;
+            return (
+              <div
+                key={i}
+                className="rounded-2xl cursor-pointer transition-all duration-500 ease-in-out overflow-hidden"
+                style={{
+                  background: isActive
+                    ? "linear-gradient(to bottom, rgba(193,255,114,0.06) 0%, rgba(0,0,0,0.3) 100%)"
+                    : "rgba(255,255,255,0.02)",
+                  border: isActive
+                    ? "1px solid rgba(193,255,114,0.3)"
+                    : "1px solid rgba(255,255,255,0.06)",
+                }}
+                onMouseEnter={() => setActiveIndex(i)}
+                onClick={() => setActiveIndex(isActive ? null : i)}
               >
-                <span className="text-white font-medium text-base md:text-lg">
-                  {faq.question}
-                </span>
-                <span
-                  className="flex-shrink-0 transition-transform duration-200"
+                <div className="p-5 md:p-6 flex items-start justify-between gap-3">
+                  <h3
+                    className="text-base md:text-lg font-semibold leading-snug transition-colors duration-300"
+                    style={{ color: isActive ? ACCENT : "white" }}
+                  >
+                    {faq.question}
+                  </h3>
+                  <span
+                    className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+                    style={{
+                      background: isActive ? "rgba(193,255,114,0.15)" : "rgba(255,255,255,0.05)",
+                      border: `1px solid ${isActive ? "rgba(193,255,114,0.3)" : "rgba(255,255,255,0.1)"}`,
+                      transform: isActive ? "rotate(45deg)" : "rotate(0deg)",
+                    }}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                      <path d="M10 4v12M4 10h12" stroke={isActive ? ACCENT : "rgba(255,255,255,0.4)"} strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </div>
+
+                <div
+                  className="transition-all duration-500 ease-in-out overflow-hidden"
                   style={{
-                    color: openIndex === i ? ACCENT : "rgba(255,255,255,0.3)",
-                    transform: openIndex === i ? "rotate(45deg)" : "rotate(0deg)",
+                    maxHeight: isActive ? "300px" : "0px",
+                    opacity: isActive ? 1 : 0,
                   }}
                 >
-                  <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </span>
-              </button>
-              {openIndex === i && (
-                <div className="px-6 pb-6">
-                  <p className="text-white/50 text-base leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  <div className="px-5 md:px-6 pb-5 md:pb-6">
+                    <p className="text-sm md:text-base text-white/60 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+
+                {isActive && (
+                  <div className="h-0.5 w-full" style={{ background: ACCENT }} />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -1004,7 +776,7 @@ function ContactSection() {
   };
 
   return (
-    <section id="kontakt" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16" style={{ backgroundColor: "hsl(0 0% 4%)" }}>
+    <section id="kontakt" className="relative py-24 md:py-40 px-5 md:px-8 lg:px-16">
       <SectionCorners />
       <div className="w-full max-w-3xl mx-auto">
         <div className="text-center mb-12 md:mb-16">
@@ -1049,8 +821,9 @@ function ContactSection() {
             onSubmit={handleSubmit}
             className="p-7 sm:p-10 rounded-2xl flex flex-col gap-6"
             style={{
-              background: "hsl(0 0% 7%)",
-              border: "1px solid rgba(255,255,255,0.07)",
+              background: "rgba(255,255,255,0.02)",
+              border: "1px solid rgba(193,255,114,0.25)",
+              boxShadow: "0 0 20px rgba(193,255,114,0.06)",
             }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -1171,14 +944,14 @@ function ContactSection() {
               </span>
             </label>
 
-            <button
+            <LiquidButton
               type="submit"
               disabled={!form.privacy || submitting}
-              className={`w-full py-5 rounded-xl font-semibold text-lg transition-all active:scale-95 mt-1 disabled:opacity-40 disabled:cursor-not-allowed${!form.privacy || submitting ? '' : ' pulse-glow-btn'}`}
-              style={{ background: ACCENT, color: "#0a0a0a" }}
+              size="xl"
+              className={`w-full py-5 !rounded-full font-semibold text-lg transition-all active:scale-95 mt-1 disabled:opacity-40 disabled:cursor-not-allowed text-white ${!form.privacy || submitting ? '' : ' pulse-glow-btn'}`}
             >
               {submitting ? "Wird gesendet…" : "Kostenloses Erstgespräch anfragen →"}
-            </button>
+            </LiquidButton>
 
             {submitError && (
               <p className="text-sm text-center" style={{ color: "#f87171" }}>
@@ -1206,9 +979,9 @@ function Footer() {
       <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-5">
         <div className="flex items-center gap-4">
           <img src="/logo.png" alt="Logo" className="h-8 w-8 object-contain" />
-          <span className="text-base text-white/40">RevenueFlow Systems</span>
+          <span className="text-base font-bold italic" style={{ color: ACCENT }}>revenueflowsystems</span>
           <a
-            href="https://www.instagram.com/revenueflow.systems/?hl=de"
+            href="https://www.instagram.com/revenueflowsystems.de/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
@@ -1239,8 +1012,7 @@ function Footer() {
           </a>
           <button
             onClick={openSettings}
-            className="text-sm text-white/30 hover:text-white/60 transition-colors"
-            style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+            className="text-sm text-white/30 hover:text-white/60 transition-colors bg-transparent border-0 p-0"
           >
             Cookie-Einstellungen
           </button>
@@ -1258,12 +1030,24 @@ export default function LandingPage() {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <HeroSection />
-        <ProcessSection />
-        <ServicesSection />
-        <TestimonialsSection />
-        <FAQSection />
-        <ContactSection />
+        <ScrollSection isFirst>
+          <HeroSection />
+        </ScrollSection>
+        <ScrollSection>
+          <ProcessSection />
+        </ScrollSection>
+        <ScrollSection>
+          <ServicesSection />
+        </ScrollSection>
+        <ScrollSection>
+          <TestimonialsSection />
+        </ScrollSection>
+        <ScrollSection>
+          <FAQSection />
+        </ScrollSection>
+        <ScrollSection isLast>
+          <ContactSection />
+        </ScrollSection>
       </main>
       <Footer />
     </div>
