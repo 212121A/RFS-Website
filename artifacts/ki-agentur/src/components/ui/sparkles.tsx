@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import { useLowPerformanceMode } from "@/lib/use-low-performance";
 
 type SparklesProps = {
   className?: string;
@@ -34,6 +35,7 @@ export function Sparkles({
   options = {},
 }: SparklesProps) {
   const [isReady, setIsReady] = useState(false);
+  const low = useLowPerformanceMode();
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -45,6 +47,11 @@ export function Sparkles({
 
   const id = useId();
 
+  const effectiveDensity = useMemo(() => {
+    if (!low) return density;
+    return Math.min(180, Math.round(density * 0.12));
+  }, [density, low]);
+
   const defaultOptions = {
     background: {
       color: {
@@ -55,7 +62,7 @@ export function Sparkles({
       enable: false,
       zIndex: 1,
     },
-    fpsLimit: 120,
+    fpsLimit: low ? 60 : 120,
     particles: {
       color: {
         value: color,
@@ -65,12 +72,12 @@ export function Sparkles({
         direction: "none" as const,
         speed: {
           min: minSpeed || speed / 10,
-          max: speed,
+          max: low ? speed * 0.6 : speed,
         },
         straight: false,
       },
       number: {
-        value: density,
+        value: effectiveDensity,
       },
       opacity: {
         value: {
@@ -78,9 +85,9 @@ export function Sparkles({
           max: opacity,
         },
         animation: {
-          enable: true,
+          enable: !low,
           sync: false,
-          speed: opacitySpeed,
+          speed: low ? 0 : opacitySpeed,
         },
       },
       size: {
@@ -90,7 +97,7 @@ export function Sparkles({
         },
       },
     },
-    detectRetina: true,
+    detectRetina: !low,
   };
 
   return isReady ? (

@@ -2,9 +2,18 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import { useLowPerformanceMode } from "@/lib/use-low-performance";
 
-function FloatingPaths({ position }: { position: number }) {
-  const paths = Array.from({ length: 36 }, (_, i) => ({
+function FloatingPaths({
+  position,
+  pathCount,
+  animated,
+}: {
+  position: number;
+  pathCount: number;
+  animated: boolean;
+}) {
+  const paths = Array.from({ length: pathCount }, (_, i) => ({
     id: i,
     d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
       380 - i * 5 * position
@@ -25,36 +34,63 @@ function FloatingPaths({ position }: { position: number }) {
       >
         <title>Background Paths</title>
         {paths.map((path) => (
-          <motion.path
-            key={path.id}
-            d={path.d}
-            stroke="#c1ff72"
-            strokeWidth={path.width}
-            strokeOpacity={0.04 + path.id * 0.012}
-            initial={{ pathLength: 0.3, opacity: 0.6 }}
-            animate={{
-              pathLength: 1,
-              opacity: [0.3, 0.6, 0.3],
-              pathOffset: [0, 1, 0],
-            }}
-            transition={{
-              duration: 20 + Math.random() * 10,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-          />
+          <PathLine key={path.id} path={path} animated={animated} />
         ))}
       </svg>
     </div>
   );
 }
 
+function PathLine({
+  path,
+  animated,
+}: {
+  path: { id: number; d: string; width: number };
+  animated: boolean;
+}) {
+  const baseOpacity = 0.04 + path.id * 0.012;
+  if (!animated) {
+    return (
+      <path
+        d={path.d}
+        stroke="#c1ff72"
+        strokeWidth={path.width}
+        strokeOpacity={Math.min(0.35, baseOpacity * 2)}
+      />
+    );
+  }
+  return (
+    <motion.path
+      d={path.d}
+      stroke="#c1ff72"
+      strokeWidth={path.width}
+      strokeOpacity={baseOpacity}
+      initial={{ pathLength: 0.3, opacity: 0.6 }}
+      animate={{
+        pathLength: 1,
+        opacity: [0.3, 0.6, 0.3],
+        pathOffset: [0, 1, 0],
+      }}
+      transition={{
+        duration: 20 + Math.random() * 10,
+        repeat: Number.POSITIVE_INFINITY,
+        ease: "linear",
+      }}
+    />
+  );
+}
+
 export function BackgroundPaths({ children }: { children?: React.ReactNode }) {
+  const low = useLowPerformanceMode();
+  const pathCount = low ? 14 : 36;
+  const animated = !low;
   return (
     <div className="relative w-full h-full overflow-hidden bg-black">
       <div className="absolute inset-0">
-        <FloatingPaths position={1} />
-        <FloatingPaths position={-1} />
+        <FloatingPaths position={1} pathCount={pathCount} animated={animated} />
+        {!low && (
+          <FloatingPaths position={-1} pathCount={pathCount} animated={animated} />
+        )}
       </div>
       {children && <div className="relative z-10">{children}</div>}
     </div>

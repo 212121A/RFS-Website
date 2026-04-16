@@ -1,6 +1,13 @@
 "use client";
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion, type MotionValue } from "framer-motion";
+import {
+  useScroll,
+  useTransform,
+  motion,
+  useReducedMotion,
+  type MotionValue,
+} from "framer-motion";
+import { useLowPerformanceMode } from "@/lib/use-low-performance";
 
 export const ContainerScroll = ({
   titleComponent,
@@ -15,6 +22,9 @@ export const ContainerScroll = ({
     offset: ["start end", "end start"],
   });
   const [isMobile, setIsMobile] = React.useState(false);
+  const reduceMotion = useReducedMotion();
+  const lowPerf = useLowPerformanceMode();
+  const simplifyMotion = Boolean(reduceMotion || lowPerf);
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -31,9 +41,21 @@ export const ContainerScroll = ({
     return isMobile ? [0.7, 0.9] : [1.05, 1];
   };
 
-  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [20, 0, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 1, 0]);
+  const rotate = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    simplifyMotion ? [0, 0, 0] : [20, 0, 0],
+  );
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    simplifyMotion ? [1, 1] : scaleDimensions(),
+  );
+  const headerOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.5],
+    simplifyMotion ? [1, 1, 1] : [1, 1, 0],
+  );
 
   return (
     <div
@@ -42,7 +64,7 @@ export const ContainerScroll = ({
     >
       <div
         className="py-4 md:py-10 w-full relative"
-        style={{ perspective: "1000px" }}
+        style={{ perspective: simplifyMotion ? undefined : "1000px" }}
       >
         <Header titleComponent={titleComponent} opacity={headerOpacity} />
         <Card rotate={rotate} scale={scale}>

@@ -1,7 +1,8 @@
 "use client";
 
-import { useScroll, useTransform, motion } from "motion/react";
+import { useScroll, useTransform, motion, useReducedMotion } from "motion/react";
 import React, { useRef } from "react";
+import { useLowPerformanceMode } from "@/lib/use-low-performance";
 
 interface ScrollSectionProps {
   children: React.ReactNode;
@@ -11,6 +12,10 @@ interface ScrollSectionProps {
 
 export function ScrollSection({ children, isFirst = false, isLast = false }: ScrollSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
+  const lowPerf = useLowPerformanceMode();
+  const simplifyMotion = Boolean(reduceMotion || lowPerf);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -33,9 +38,24 @@ export function ScrollSection({ children, isFirst = false, isLast = false }: Scr
     ? [1, 1, 1, isLast ? 1 : 0.5]
     : [0.5, 1, 1, isLast ? 1 : 0.5];
 
-  const scale = useTransform(scrollYProgress, scaleKeys, scaleVals);
-  const rotate = useTransform(scrollYProgress, rotateKeys, rotateVals);
-  const opacity = useTransform(scrollYProgress, opacityKeys, opacityVals);
+  const neutral4 = [1, 1, 1, 1];
+  const neutral0 = [0, 0, 0, 0];
+
+  const scale = useTransform(
+    scrollYProgress,
+    scaleKeys,
+    simplifyMotion ? neutral4 : scaleVals,
+  );
+  const rotate = useTransform(
+    scrollYProgress,
+    rotateKeys,
+    simplifyMotion ? neutral0 : rotateVals,
+  );
+  const opacity = useTransform(
+    scrollYProgress,
+    opacityKeys,
+    simplifyMotion ? neutral4 : opacityVals,
+  );
 
   return (
     <div ref={ref}>
