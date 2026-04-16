@@ -13,25 +13,38 @@ if (Number.isNaN(port) || port <= 0) {
 
 const basePath = process.env.BASE_PATH ?? "/";
 
-export default defineConfig({
+/** Cartographer can throw if monorepo layout differs; without this, Vite never starts on Replit. */
+async function replitDevPlugins() {
+  if (
+    process.env.NODE_ENV === "production" ||
+    process.env.REPL_ID === undefined
+  ) {
+    return [];
+  }
+  try {
+    const [{ cartographer }, devBannerMod] = await Promise.all([
+      import("@replit/vite-plugin-cartographer"),
+      import("@replit/vite-plugin-dev-banner"),
+    ]);
+    return [
+      cartographer({
+        root: path.resolve(import.meta.dirname, ".."),
+      }),
+      devBannerMod.devBanner(),
+    ];
+  } catch (err) {
+    console.warn("[vite] Replit dev plugins skipped:", err);
+    return [];
+  }
+}
+
+export default defineConfig(async () => ({
   base: basePath,
   plugins: [
     react(),
     tailwindcss(),
     runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer({
-              root: path.resolve(import.meta.dirname, ".."),
-            }),
-          ),
-          await import("@replit/vite-plugin-dev-banner").then((m) =>
-            m.devBanner(),
-          ),
-        ]
-      : []),
+    ...(await replitDevPlugins()),
   ],
   resolve: {
     alias: {
@@ -47,6 +60,7 @@ export default defineConfig({
   },
   server: {
     port,
+    strictPort: false,
     host: "0.0.0.0",
     allowedHosts: true,
     fs: {
@@ -56,7 +70,8 @@ export default defineConfig({
   },
   preview: {
     port,
+    strictPort: false,
     host: "0.0.0.0",
     allowedHosts: true,
   },
-});
+}));
