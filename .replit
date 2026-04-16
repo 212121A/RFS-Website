@@ -1,5 +1,8 @@
 modules = ["nodejs-24"]
 
+# Web preview must match the port Vite binds to (Replit injects $PORT in the Run shell).
+run = "cd artifacts/ki-agentur && BASE_PATH=/ pnpm dev"
+
 [[artifacts]]
 id = "artifacts/api-server"
 
